@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     
     private Direction facingDirection = Direction.DOWN;
+    
+    public FireTree fireTree;
     private Vector2 fireTreePosition;
 
     enum Direction {
@@ -67,6 +69,10 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody.MovePosition( transform.position + change * speed * Time.deltaTime);
     }
     
+    void resetActingAnimationState() {
+        animator.SetBool("acting", false);
+    }
+    
     void updateKeyboard() {
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
             facingDirection = Direction.UP;
@@ -102,7 +108,9 @@ public class PlayerMovement : MonoBehaviour
             
             if (fireTreePosition.x - 0.5f < targetPosition.x && fireTreePosition.x + 0.5f > targetPosition.x) {
                 if (fireTreePosition.y - 0.5f < targetPosition.y && fireTreePosition.y + 0.5f > targetPosition.y) {
-                    Debug.Log("targeted tree");
+                    animator.SetBool("acting", true);
+                    fireTree.putOut();
+                    Invoke("resetActingAnimationState", 0.5f);
                 }
             }
         }
