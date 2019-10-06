@@ -15916,7 +15916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: 
+    name: Fire Lord
     sentences:
     - you shall pass
 --- !u!1 &2146366622
