@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private Direction facingDirection = Direction.DOWN;
     
     public List<FireTree> fireTrees;
-
+    public List<NPC> npcs;
+    
     enum Direction {
         UP,
         DOWN,
@@ -112,6 +113,16 @@ public class PlayerMovement : MonoBehaviour
                             fireTree.putOut();
                             Invoke("resetActingAnimationState", 0.5f);
                         }
+                    }
+                }
+            }
+            
+            foreach (NPC npc in npcs) {
+                Debug.Log("npc test " + npc);
+                Vector2 npcPosition = new Vector2(npc.gameObject.transform.position.x, npc.gameObject.transform.position.y);
+                if (npcPosition.x - 0.5f < targetPosition.x && npcPosition.x + 0.5f > targetPosition.x) {
+                    if (npcPosition.y - 0.5f < targetPosition.y && npcPosition.y + 0.5f > targetPosition.y) {
+                        npc.talkTo(this);
                     }
                 }
             }

@@ -20,7 +20,7 @@ public class FireTree : MonoBehaviour
     }
     
     public void putOut() {
-        Debug.Log("put out");
+        Debug.Log("putting out fire");
         animator.Play("putOut");
         onFire = false;
     }
