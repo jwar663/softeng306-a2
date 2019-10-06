@@ -20,7 +20,7 @@ public class NPC : MonoBehaviour
         NPCBehaviour behaviour = GetComponent<NPCBehaviour>();
         
         if (behaviour != null) {
-            behaviour.interact();
+            behaviour.interact(player);
         }
     }
 }

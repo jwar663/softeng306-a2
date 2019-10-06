@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public List<FireTree> fireTrees;
     public List<NPC> npcs;
     
+    public int fireTreesLeft;
+    
     enum Direction {
         UP,
         DOWN,
@@ -28,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
+        
+        fireTreesLeft = fireTrees.Count;
     }
 
     // Update is called once per frame
@@ -111,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
                         if (fireTree.isOnFire()) {
                             animator.SetBool("acting", true);
                             fireTree.putOut();
+                            fireTreesLeft--;
                             Invoke("resetActingAnimationState", 0.5f);
                         }
                     }
