@@ -4324,6 +4324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1489189848}
   dialogueText: {fileID: 1110748421}
+  animator: {fileID: 1229095635}
 --- !u!4 &1429847350
 Transform:
   m_ObjectHideFlags: 0
@@ -15191,7 +15192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: 
+    name: Fire Lord
     sentences:
     - you shall pass
 --- !u!1 &1937589070
