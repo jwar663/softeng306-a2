@@ -37,14 +37,18 @@ public class Enemy : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other) {
         Player player = other.gameObject.GetComponent<Player>();
         
-        player.reduceHP(10);
-        player.setOnFire(true);
+        if (player != null) {
+            player.reduceHP(10);
+            player.setOnFire(true);
+        }
     }
     
     public void OnTriggerExit2D(Collider2D other) {
         Player player = other.gameObject.GetComponent<Player>();
         
-        player.setOnFire(false);
+        if (player != null) {
+            player.setOnFire(false);
+        }
     }
     
     public void switchDirection() {
