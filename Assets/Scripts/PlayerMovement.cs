@@ -13,8 +13,7 @@ public class PlayerMovement : MonoBehaviour
     
     private Direction facingDirection = Direction.DOWN;
     
-    public FireTree fireTree;
-    private Vector2 fireTreePosition;
+    public List<FireTree> fireTrees;
 
     enum Direction {
         UP,
@@ -28,8 +27,6 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
-        
-        fireTreePosition = new Vector2(-1.5f, -1.5f);
     }
 
     // Update is called once per frame
@@ -106,11 +103,16 @@ public class PlayerMovement : MonoBehaviour
             
             Vector2 targetPosition = myRigidbody.position + offset;
             
-            if (fireTreePosition.x - 0.5f < targetPosition.x && fireTreePosition.x + 0.5f > targetPosition.x) {
-                if (fireTreePosition.y - 0.5f < targetPosition.y && fireTreePosition.y + 0.5f > targetPosition.y) {
-                    animator.SetBool("acting", true);
-                    fireTree.putOut();
-                    Invoke("resetActingAnimationState", 0.5f);
+            foreach (FireTree fireTree in fireTrees) {
+                Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
+                if (fireTreePosition.x - 0.5f < targetPosition.x && fireTreePosition.x + 0.5f > targetPosition.x) {
+                    if (fireTreePosition.y - 0.5f < targetPosition.y && fireTreePosition.y + 0.5f > targetPosition.y) {
+                        if (fireTree.isOnFire()) {
+                            animator.SetBool("acting", true);
+                            fireTree.putOut();
+                            Invoke("resetActingAnimationState", 0.5f);
+                        }
+                    }
                 }
             }
         }
