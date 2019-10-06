@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class HumanNPCBehaviour : NPCBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,11 +16,7 @@ public class NPC : MonoBehaviour
         
     }
     
-    public void talkTo(PlayerMovement player) {
-        NPCBehaviour behaviour = GetComponent<NPCBehaviour>();
-        
-        if (behaviour != null) {
-            behaviour.interact();
-        }
+    public override void interact() {
+        Debug.Log("human npc");
     }
 }
