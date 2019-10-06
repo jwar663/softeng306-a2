@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class NPCBehaviour : MonoBehaviour
 {   
-    public abstract void interact(PlayerMovement player);
+    public abstract void interact(Player player);
 }

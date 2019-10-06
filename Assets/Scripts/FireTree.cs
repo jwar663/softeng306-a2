@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+
+Represents a burning tree that can be extinguished by player interaction. This should be turned into an NPC (which should be renamed to 'Interactable' or something) at some point.
+
+*/
+
 public class FireTree : MonoBehaviour
 {
     public Animator animator;

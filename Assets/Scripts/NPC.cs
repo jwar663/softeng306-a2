@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+
+NPCs should have an NPC.cs script and another script extending the abstract NPCBehaviour.cs. There may be a better way to do this, but then again, this language was designed for and by failed lobotomy experiments.
+
+*/
 public class NPC : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -16,7 +21,7 @@ public class NPC : MonoBehaviour
         
     }
     
-    public void talkTo(PlayerMovement player) {
+    public void talkTo(Player player) {
         NPCBehaviour behaviour = GetComponent<NPCBehaviour>();
         
         if (behaviour != null) {

@@ -16,7 +16,7 @@ public class FireNPCBehaviour : NPCBehaviour
         
     }
     
-    public override void interact(PlayerMovement player) {
+    public override void interact(Player player) {
         if (player.fireTreesLeft == 0) {
             Debug.Log("you shall pass");
             Destroy(this.gameObject);

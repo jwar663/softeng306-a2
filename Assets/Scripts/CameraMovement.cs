@@ -9,15 +9,15 @@ public class CameraMovement : MonoBehaviour
     public Vector2 maxPosition;
     public Vector2 minPosition;
     
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // LateUpdate is always called last
     void LateUpdate()
     {
+        // tracks the camera to the position of the target, with a smoothing effect
+        // also prevents the camera from exceeding the bounds specified by maxPosition and minPosition
         if (transform.position != target.position) {
             Vector3 targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
             

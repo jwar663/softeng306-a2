@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
     public float speed;
@@ -11,11 +11,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 change;
     private Animator animator;
     
+    // current direction the player is facing
     private Direction facingDirection = Direction.DOWN;
     
+    // all FireTrees in the scene
     public List<FireTree> fireTrees;
+    // all NPCs in the scene
     public List<NPC> npcs;
     
+    // number of fire trees left to extinguish
     public int fireTreesLeft;
     
     enum Direction {
@@ -76,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
     }
     
     void updateKeyboard() {
+        // update the direction the player is facing
+        // this doesn't actually change how they're rendered, but we need this information later
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
             facingDirection = Direction.UP;
         } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
@@ -86,7 +92,9 @@ public class PlayerMovement : MonoBehaviour
             facingDirection = Direction.RIGHT;
         }
         
+        // if 'x' pressed
         if (Input.GetKeyDown(KeyCode.X)) {
+            // calculate what square the player is facing
             Vector2 offset;
             switch (facingDirection) {
             case Direction.UP:
@@ -108,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
             
             Vector2 targetPosition = myRigidbody.position + offset;
             
+            // if the player is facing a firetree that is on fire, extinguish it
             foreach (FireTree fireTree in fireTrees) {
                 Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
                 if (fireTreePosition.x - 0.5f < targetPosition.x && fireTreePosition.x + 0.5f > targetPosition.x) {
@@ -122,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             
+            // if the player is facing an npc, interact with it
             foreach (NPC npc in npcs) {
                 Vector2 npcPosition = new Vector2(npc.gameObject.transform.position.x, npc.gameObject.transform.position.y);
                 if (npcPosition.x - 0.5f < targetPosition.x && npcPosition.x + 0.5f > targetPosition.x) {
