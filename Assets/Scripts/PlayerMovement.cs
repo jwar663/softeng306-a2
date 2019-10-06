@@ -10,13 +10,24 @@ public class PlayerMovement : MonoBehaviour
     // how much the player's position should change
     private Vector3 change;
     private Animator animator;
+    
+    private Direction facingDirection = Direction.DOWN;
+    private Vector2 fireTreePosition;
 
+    enum Direction {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
         
+        fireTreePosition = new Vector2(-1.5f, -1.5f);
     }
 
     // Update is called once per frame
@@ -30,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         change.y = Input.GetAxisRaw("Vertical");
         //Debug.Log(change);
         updateAnimationAndMove();
+        updateKeyboard();
 
         
     }
@@ -53,5 +65,46 @@ public class PlayerMovement : MonoBehaviour
     void MoveCharacter()
     {
         myRigidbody.MovePosition( transform.position + change * speed * Time.deltaTime);
+    }
+    
+    void updateKeyboard() {
+        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            facingDirection = Direction.UP;
+        } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+            facingDirection = Direction.DOWN;
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            facingDirection = Direction.LEFT;
+        } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            facingDirection = Direction.RIGHT;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.X)) {
+            Vector2 offset;
+            switch (facingDirection) {
+            case Direction.UP:
+                offset = new Vector2(0f, 1f);
+                break;
+            case Direction.DOWN:
+                offset = new Vector2(0f, -1f);
+                break;
+            case Direction.LEFT:
+                offset = new Vector2(-1f, 0f);
+                break;
+            case Direction.RIGHT:
+                offset = new Vector2(1f, 0f);
+                break;
+            default:
+                offset = new Vector2(0f, 0f);
+                break;
+            }
+            
+            Vector2 targetPosition = myRigidbody.position + offset;
+            
+            if (fireTreePosition.x - 0.5f < targetPosition.x && fireTreePosition.x + 0.5f > targetPosition.x) {
+                if (fireTreePosition.y - 0.5f < targetPosition.y && fireTreePosition.y + 0.5f > targetPosition.y) {
+                    Debug.Log("targeted tree");
+                }
+            }
+        }
     }
 }
