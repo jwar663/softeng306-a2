@@ -1,18 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LevelStartTransition : MonoBehaviour
 {
-    private Text titleText;
+    public TextMeshProUGUI titleText;
     
     // Start is called before the first frame update
     void Start()
     {
-        titleText = GetComponent<Text>();
-        
         if (Game.levelID == -1) {
             titleText.text = Game.levelName;
         } else {

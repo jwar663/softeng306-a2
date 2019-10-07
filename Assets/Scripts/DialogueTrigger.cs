@@ -13,6 +13,7 @@ public class DialogueTrigger : MonoBehaviour
     //Call this function to make the dialogue box appear with
     public void TriggerDialogue(List<string> sentences)
     {
+        Debug.Log("test");
         dialogue.setSentences(sentences);
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }

@@ -12,11 +12,12 @@ public class FireTree : MonoBehaviour
 {
     public Animator animator;
     private bool onFire;
-    
     // Start is called before the first frame update
     void Start()
     {
         onFire = true;
+        //Todo: find a way to have each individual object have a sound...
+        FindObjectOfType<AudioManager>().Play("TreeOnFire");
     }
 
     // Update is called once per frame
@@ -26,6 +27,7 @@ public class FireTree : MonoBehaviour
     }
     
     public void putOut() {
+        FindObjectOfType<AudioManager>().Stop("TreeOnFire");
         Debug.Log("putting out fire");
         animator.Play("putOut");
         onFire = false;
