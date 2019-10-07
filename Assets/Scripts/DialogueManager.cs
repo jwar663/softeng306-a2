@@ -38,7 +38,10 @@ public class DialogueManager : MonoBehaviour
     {
         inDialogue = true;
         ignoringFirstPress = true;
-        player.setCanMove(false);
+        if (player != null)
+        {
+            player.setCanMove(false);
+        }
         animator.SetBool("IsOpen", true);
         nameText.text = dialogue.name;
         
@@ -72,6 +75,11 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         inDialogue = false;
+        if (player != null)
+        {
+            player.setCanMove(true);
+        }
+        ignoringFirstPress = true;
         player.setCanMove(true);
         animator.SetBool("IsOpen", false);
         
