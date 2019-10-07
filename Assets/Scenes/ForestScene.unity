@@ -1229,7 +1229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b082a36e20864bd4b9aaa5250b235ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseUI: {fileID: 1867889611}
 --- !u!1 &622228049
 GameObject:
   m_ObjectHideFlags: 0
@@ -18140,9 +18139,9 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Portal
     clip: {fileID: 8300000, guid: 40623a61b8649984fb558322430309a7, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
-    loop: 0
+    loop: 1
     spatialBlend: 1
     source: {fileID: 0}
   - name: Pain
