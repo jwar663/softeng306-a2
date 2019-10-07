@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
     private int hp;
     private bool onFire;
     private bool alive;
+    private bool canMove;
     
     private Rigidbody2D myRigidbody;
     // how much the player's position should change
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
         hp = 100;
         onFire = false;
         alive = true;
+        canMove = true;
         
         fireTreesLeft = fireTrees.Count;
     }
@@ -65,7 +68,7 @@ public class Player : MonoBehaviour
 
     void updateAnimationAndMove()
     {
-        if (change != Vector3.zero && alive)
+        if (change != Vector3.zero && canMove && alive)
         {
             MoveCharacter();
             animator.SetFloat("moveX", change.x);
@@ -133,6 +136,7 @@ public class Player : MonoBehaviour
                         if (fireTree.isOnFire()) {
                             animator.SetBool("acting", true);
                             fireTree.putOut();
+                            FindObjectOfType<AudioManager>().Play("PutOut");
                             fireTreesLeft--;
                             Invoke("resetActingAnimationState", 0.5f);
                         }
@@ -158,6 +162,7 @@ public class Player : MonoBehaviour
         if (hp <= 0) {
             hp = 0;
             alive = false;
+            SceneManager.LoadScene("GameOverScene");
         }
         
         Debug.Log("HP: " + hp);
@@ -170,5 +175,9 @@ public class Player : MonoBehaviour
     
     public void setOnFire(bool onFire) {
         this.onFire = onFire;
+    }
+    
+    public void setCanMove(bool canMove) {
+        this.canMove = canMove;
     }
 }

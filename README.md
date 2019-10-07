@@ -4,6 +4,15 @@ Serious game project themed around climate change.
 
 Move with the arrow keys and interact with objects you're facing using 'x'.
 
+| Name | GitHub Username  | UoA Username |
+| ---- | ---------------- | ------------ |
+| Aditya Krishnan | Akrya | akri095 |
+| Arsalan Mahmood | amah460 | amah460 |
+| Jaedyn Ward | jwar663 | jwar663 |
+| Jake Good | jake-good | jgoo479 |
+| Max Benson | veratrum | mben346 |
+| Shunji Tanako | stak469 | stak469 |
+
 ---
 
 TODO:
