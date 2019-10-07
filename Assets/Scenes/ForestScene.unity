@@ -18140,9 +18140,9 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Portal
     clip: {fileID: 8300000, guid: 40623a61b8649984fb558322430309a7, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
-    loop: 0
+    loop: 1
     spatialBlend: 1
     source: {fileID: 0}
   - name: Pain

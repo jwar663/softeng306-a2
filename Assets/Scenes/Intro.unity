@@ -1045,18 +1045,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: 627cb5a5d50b13342bde1906426caee9, type: 3}
-    volume: 0.4
-    pitch: 0.6
+    clip: {fileID: 8300000, guid: 2681db7c0b6bf824ab2036bb205bea00, type: 3}
+    volume: 0.1
+    pitch: 0.8
     loop: 1
     spatialBlend: 0
-    source: {fileID: 0}
-  - name: PutOut
-    clip: {fileID: 8300000, guid: 6d9898fff18dd15469c4ee075d498e97, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    spatialBlend: 1
     source: {fileID: 0}
 --- !u!4 &1811694916
 Transform:
