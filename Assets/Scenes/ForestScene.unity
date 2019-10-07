@@ -15869,7 +15869,7 @@ MonoBehaviour:
   sounds:
   - name: Theme
     clip: {fileID: 8300000, guid: 627cb5a5d50b13342bde1906426caee9, type: 3}
-    volume: 0.4
+    volume: 0.3
     pitch: 0.6
     loop: 1
     spatialBlend: 0
@@ -15879,6 +15879,13 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    spatialBlend: 1
+    source: {fileID: 0}
+  - name: TreeOnFire
+    clip: {fileID: 8300000, guid: 6cbdd8ac7730a4a4ea22f7e41620da47, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
     spatialBlend: 1
     source: {fileID: 0}
 --- !u!4 &1811694916
