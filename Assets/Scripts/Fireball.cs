@@ -45,8 +45,6 @@ public class Fireball : MonoBehaviour
             player.reduceHP(10);
         }
         
-        Debug.Log("hit");
-        
         Destroy(gameObject);
     }
 }
