@@ -80,7 +80,6 @@ public class DialogueManager : MonoBehaviour
             player.setCanMove(true);
         }
         ignoringFirstPress = true;
-        player.setCanMove(true);
         animator.SetBool("IsOpen", false);
         
         if (npc != null) {
