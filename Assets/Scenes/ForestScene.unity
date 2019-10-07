@@ -625,6 +625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1169603819}
   smoothing: 0.6
+  paused: 0
   maxPosition: {x: 27.5, y: 3.7}
   minPosition: {x: -9.4, y: -5.6}
 --- !u!20 &519420031
@@ -4680,6 +4681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145512230}
   - component: {fileID: 1145512229}
+  - component: {fileID: 1145512231}
   m_Layer: 0
   m_Name: ForrestGameController
   m_TagString: Untagged
@@ -4699,6 +4701,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd946d61384208241b0b828a8b07f6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npc: {fileID: 1145512231}
+  portal: {fileID: 622228054}
+  burningTree: {fileID: 822115633}
+  largeFire: {fileID: 1852637782}
+  smallFire: {fileID: 751001659}
+  camera: {fileID: 519420031}
 --- !u!4 &1145512230
 Transform:
   m_ObjectHideFlags: 0
@@ -4713,6 +4721,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1145512231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145512228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d81e57efcdcecc42af8cb97d5a13505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1169603816
 GameObject:
   m_ObjectHideFlags: 0
