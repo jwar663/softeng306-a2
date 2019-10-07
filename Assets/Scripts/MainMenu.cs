@@ -12,4 +12,11 @@ public class MainMenu : MonoBehaviour
         Game.levelID = 1; // remove
         SceneManager.LoadScene("LevelStartTransitionScene");
     }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit game");
+        Application.Quit();
+        
+    }
 }
