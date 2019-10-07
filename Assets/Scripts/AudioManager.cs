@@ -22,7 +22,10 @@ public class AudioManager : MonoBehaviour
     //music played upon opening the scene
     private void Start()
     {
-        Play("Theme");
+        if (!(Array.Find(sounds, sound => sound.name == "Theme") == null)) {
+            Play("Theme");
+        }
+        
     }
 
     //play sounds in different scripts
