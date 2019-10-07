@@ -43506,7 +43506,7 @@ MonoBehaviour:
   sounds:
   - name: Theme
     clip: {fileID: 8300000, guid: 4ce405780fa006f429d41567543838b3, type: 3}
-    volume: 0.1
+    volume: 0.02
     pitch: 0.8
     loop: 1
     spatialBlend: 0
@@ -44398,7 +44398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogBox: {fileID: 501724629}
   dialogText: {fileID: 1735670411}
-  dialog: Long ago, the amazon rainforest was burned down. You must go back in time
+  dialog: Long ago, the Amazon Rainforest was burned down. You must go back in time
     and prevent its destruction.
   playerInRange: 0
 --- !u!1001 &1299703434
