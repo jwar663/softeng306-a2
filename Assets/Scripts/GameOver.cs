@@ -8,4 +8,9 @@ public class GameOver : MonoBehaviour
     public void returnToMenu() {
         SceneManager.LoadScene("MenuScene");
     }
+
+    public void retry()
+    {
+        SceneManager.LoadScene("ForestScene");
+    }
 }
