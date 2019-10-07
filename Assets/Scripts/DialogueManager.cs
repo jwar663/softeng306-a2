@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     public Animator animator;
     public Player player;
     
+    private bool isOnInteraction;
     private bool ignoringFirstPress;
     private bool inDialogue;
 
@@ -19,7 +20,7 @@ public class DialogueManager : MonoBehaviour
     
     void Start()
     {
-        ignoringFirstPress = true;
+        ignoringFirstPress = false;
         inDialogue = false;
         sentences = new Queue<string>();
     }
@@ -37,7 +38,12 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         inDialogue = true;
-        ignoringFirstPress = true;
+        isOnInteraction = dialogue.isOnInteraction;
+        
+        if (isOnInteraction) {
+            ignoringFirstPress = true;
+        }
+        
         if (player != null)
         {
             player.setCanMove(false);
@@ -79,7 +85,10 @@ public class DialogueManager : MonoBehaviour
         {
             player.setCanMove(true);
         }
-        ignoringFirstPress = true;
+        
+        if (isOnInteraction) {
+            ignoringFirstPress = true;
+        }
         animator.SetBool("IsOpen", false);
         
         if (npc != null) {

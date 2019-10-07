@@ -15,10 +15,18 @@ public class DialogueTrigger : MonoBehaviour
         TriggerDialogue(null, sentences);
     }
     
-    public void TriggerDialogue(NPC npc, List<string> sentences)
+    public void TriggerDialogue(NPC npc, List<string> sentences) {
+        TriggerDialogue(npc, sentences, true);
+    }
+    
+    // isOnInteraction blocks the first x/space press to stop the dialogue from instantly advancing.
+    // there are other kinds of dialogue e.g. triggered by scene start
+    public void TriggerDialogue(NPC npc, List<string> sentences, bool isOnInteraction)
     {
         dialogue.npc = npc;
+        dialogue.name = npc.name;
         dialogue.setSentences(sentences);
+        dialogue.isOnInteraction = isOnInteraction;
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
 }

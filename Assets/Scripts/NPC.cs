@@ -9,6 +9,7 @@ NPCs should have an NPC.cs script and another script extending the abstract NPCB
 */
 public class NPC : MonoBehaviour
 {
+    public string name;
     NPCBehaviour behaviour;
     
     // Start is called before the first frame update

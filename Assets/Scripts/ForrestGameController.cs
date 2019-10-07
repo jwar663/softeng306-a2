@@ -52,10 +52,10 @@ public class ForrestGameController : NPCBehaviour
         List<string> dialogue = new List<string>();
         dialogue.Add("Welcome to the rainforest.");
         dialogue.Add("Home to thousands of animal and plant species.");
-        dialogue.Add("Rainforest play a huge role in regulating the worlds CO2 levels.");
+        dialogue.Add("Rainforests play a huge role in regulating the worlds CO2 levels.");
         dialogue.Add("Each year we humans set them on fire to make way for agriculatural land.");
-        dialogue.Add("If we dont put a stop to this, we wont have any rainforests left.");
-        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue);
+        dialogue.Add("If you don't put a stop to this, we wont have any rainforests left.");
+        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
         while (!isCompleted)
@@ -70,7 +70,7 @@ public class ForrestGameController : NPCBehaviour
         }
         dialogue = new List<string>();
         dialogue.Add("You can use that portal to leave the area.");
-        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue);
+        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
         while (!isCompleted)
@@ -85,7 +85,7 @@ public class ForrestGameController : NPCBehaviour
         }
         dialogue = new List<string>();
         dialogue.Add("The portal is being guarded by that fire monster.");
-        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue);
+        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
         while (!isCompleted)
@@ -101,7 +101,7 @@ public class ForrestGameController : NPCBehaviour
         dialogue = new List<string>();
         dialogue.Add("You must put out the burning trees to weaken the fire monster.");
         dialogue.Add("If you put out enough fires, he will be too weak to continue burning and go out.");
-        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue);
+        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
         while (!isCompleted)
@@ -116,7 +116,7 @@ public class ForrestGameController : NPCBehaviour
         }
         dialogue = new List<string>();
         dialogue.Add("Try and avoid these smaller fire monsters, they will hurt you.");
-        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue);
+        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
         while (!isCompleted)

@@ -15,9 +15,13 @@ Move with the arrow keys and interact with objects you're facing using 'x'. Hold
 
 ---
 
-TODO:
+Build Instructions:
 
-* Improve story of first prototype level, in particular making the mechanics and objectives of the game obvious to the player, and adding some kind of loss condition
+Open the project using Unity 2018.4.10f1. Create a folder "Build" in the project directory. File > Build and Run the project, and select the Build directory. The executable will be located at Build/Rpg2DTopDown.exe.
+
+---
+
+TODO:
 
 * Implement other menus and functionality e.g. settings, savefiles
 * Implement more levels that are more complex
@@ -25,6 +29,7 @@ TODO:
 * ~Implement simple HUD (health bar)~
 * ~Implement dialogue UI used for interacting with NPCs~
 * ~Implement start menu and game over/victory menus~
+* ~Improve story of first prototype level, in particular making the mechanics and objectives of the game obvious to the player, and adding some kind of loss condition~
 
 ---
 

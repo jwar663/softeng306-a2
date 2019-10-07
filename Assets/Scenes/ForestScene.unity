@@ -1056,8 +1056,8 @@ MonoBehaviour:
   target: {fileID: 1169603819}
   smoothing: 0.6
   paused: 0
-  maxPosition: {x: 27.5, y: 3.7}
-  minPosition: {x: -9.4, y: -5.6}
+  maxPosition: {x: 27.1, y: 3.7}
+  minPosition: {x: -9.1, y: -5.6}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -5610,6 +5610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d81e57efcdcecc42af8cb97d5a13505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Suspiciously identical man
 --- !u!1 &1169603816
 GameObject:
   m_ObjectHideFlags: 0
@@ -5905,6 +5906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d81e57efcdcecc42af8cb97d5a13505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
 --- !u!61 &1187841374
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6959,8 +6961,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -698.8, y: 122.2}
-  m_SizeDelta: {x: 266.5, y: 63.5}
+  m_AnchoredPosition: {x: -401.1, y: 122.2}
+  m_SizeDelta: {x: 861.9, y: 63.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489189848
 MonoBehaviour:
@@ -18481,6 +18483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d81e57efcdcecc42af8cb97d5a13505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
 --- !u!114 &1852637784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18495,6 +18498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: Fire Lord
+    isOnInteraction: 0
     sentences:
     - you shall pass
     npc: {fileID: 0}

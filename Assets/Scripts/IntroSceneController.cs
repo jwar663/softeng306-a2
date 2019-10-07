@@ -36,7 +36,7 @@ public class IntroSceneController : NPCBehaviour
             dialogue.Add("You must travel back in time to climate disasters and stop them from ever happening");
             dialogue.Add("You are humanity's last hope!");
             dialogue.Add("Good luck!");
-            FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue);
+            FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
             notRun = false;
         }
     }
