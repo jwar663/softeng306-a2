@@ -161,8 +161,9 @@ public class Player : MonoBehaviour
         }
         
         Debug.Log("HP: " + hp);
+        FindObjectOfType<ProgressBar>().GetCurrentProgress(getHP());
     }
-    
+
     public int getHP() {
         return hp;
     }
