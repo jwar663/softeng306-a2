@@ -55,9 +55,5 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Stop();
     }
-    //failed implementation
-    //public void playClick() {
-      //  FindObjectOfType<AudioManager>().Play("Confirm");
-    //}
 }
 
