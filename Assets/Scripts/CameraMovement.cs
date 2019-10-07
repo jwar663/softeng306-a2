@@ -8,6 +8,7 @@ public class CameraMovement : MonoBehaviour
 
     //how quickly the camera moves towards the target
     public float smoothing;
+    public bool paused = false;
 
     public Vector2 maxPosition;
     public Vector2 minPosition;
@@ -22,7 +23,7 @@ public class CameraMovement : MonoBehaviour
     // a late update comes last, character moves first then camera follows
     void LateUpdate()
     {
-        if(transform.position != target.position)
+        if(transform.position != target.position && !paused)
         {
             Vector3 targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
 
