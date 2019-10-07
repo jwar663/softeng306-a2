@@ -136,6 +136,7 @@ public class Player : MonoBehaviour
                         if (fireTree.isOnFire()) {
                             animator.SetBool("acting", true);
                             fireTree.putOut();
+                            FindObjectOfType<AudioManager>().Play("PutOut");
                             fireTreesLeft--;
                             Invoke("resetActingAnimationState", 0.5f);
                         }

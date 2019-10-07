@@ -15874,6 +15874,13 @@ MonoBehaviour:
     loop: 1
     spatialBlend: 0
     source: {fileID: 0}
+  - name: PutOut
+    clip: {fileID: 8300000, guid: 6d9898fff18dd15469c4ee075d498e97, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 1
+    source: {fileID: 0}
 --- !u!4 &1811694916
 Transform:
   m_ObjectHideFlags: 0
