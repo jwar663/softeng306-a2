@@ -464,7 +464,7 @@ MonoBehaviour:
     spatialBlend: 0
     source: {fileID: 0}
   - name: Confirm
-    clip: {fileID: 8300000, guid: cf2238340017ce1449bb7b5c3ee18799, type: 3}
+    clip: {fileID: 8300000, guid: d8026f6f335ca6645b3463317a2bab7a, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -565,6 +565,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567967271}
         m_MethodName: retry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 567967271}
+        m_MethodName: playClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1052,6 +1063,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567967271}
         m_MethodName: returnToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 567967271}
+        m_MethodName: playClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -13,9 +13,14 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        FindObjectOfType<AudioManager>().Play("Confirm");
+        //FindObjectOfType<AudioManager>().Play("Confirm");
         Debug.Log("Quit game");
         Application.Quit();
         
+    }
+
+    public void playClick()
+    {
+        FindObjectOfType<AudioManager>().Play("Confirm");
     }
 }

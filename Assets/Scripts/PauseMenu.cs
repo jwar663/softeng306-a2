@@ -55,4 +55,8 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         SceneManager.LoadScene("LevelSelectScene");
     }
+
+    public void playClick() {
+      FindObjectOfType<AudioManager>().Play("Confirm");
+    }
 }
