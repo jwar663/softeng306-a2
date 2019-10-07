@@ -463,6 +463,13 @@ MonoBehaviour:
     loop: 0
     spatialBlend: 0
     source: {fileID: 0}
+  - name: Confirm
+    clip: {fileID: 8300000, guid: cf2238340017ce1449bb7b5c3ee18799, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
 --- !u!4 &390119421
 Transform:
   m_ObjectHideFlags: 0
