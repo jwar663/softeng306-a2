@@ -59,4 +59,12 @@ public class PauseMenu : MonoBehaviour
     public void playClick() {
       FindObjectOfType<AudioManager>().Play("Confirm");
     }
+
+    public void exitToMain()
+    {
+        pauseUI.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+        SceneManager.LoadScene("MenuScene");
+    }
 }
