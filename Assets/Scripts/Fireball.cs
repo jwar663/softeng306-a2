@@ -5,12 +5,12 @@ using UnityEngine;
 public class Fireball : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
+    private bool hit;
     
     // Start is called before the first frame update
     void Start()
     {
-        // dispose of this projectile after 10 seconds
-        Invoke("die", 10.0f);
+        hit = false;
     }
 
     // Update is called once per frame
@@ -34,10 +34,18 @@ public class Fireball : MonoBehaviour
             return;
         }
         
+        // projectiles hit twice for some reason
+        if (hit) {
+            return;
+        }
+        hit = true;
+        
         Player player = other.gameObject.GetComponent<Player>();
         if (player != null) {
             player.reduceHP(10);
         }
+        
+        Debug.Log("hit");
         
         Destroy(gameObject);
     }

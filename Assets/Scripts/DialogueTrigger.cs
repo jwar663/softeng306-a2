@@ -11,8 +11,13 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue dialogue;
 
     //Call this function to make the dialogue box appear with
-    public void TriggerDialogue(List<string> sentences)
+    public void TriggerDialogue(List<string> sentences) {
+        TriggerDialogue(null, sentences);
+    }
+    
+    public void TriggerDialogue(NPC npc, List<string> sentences)
     {
+        dialogue.npc = npc;
         dialogue.setSentences(sentences);
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }

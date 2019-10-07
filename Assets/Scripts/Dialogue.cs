@@ -9,6 +9,7 @@ public class Dialogue
 
     //[TextArea(1,100)]
     public List<string> sentences;
+    public NPC npc;
 
     public void setSentences(List<string> AllSentences)
     {

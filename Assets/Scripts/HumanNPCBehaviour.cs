@@ -16,7 +16,11 @@ public class HumanNPCBehaviour : NPCBehaviour
         
     }
     
-    public override void interact(Player player) {
+    public override void interact(NPC npc) {
         Debug.Log("human npc");
+    }
+    
+    public override void dialogueCompleted() {
+        
     }
 }

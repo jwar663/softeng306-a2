@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class NPCBehaviour : MonoBehaviour
 {   
-    public abstract void interact(Player player);
+    public abstract void interact(NPC npc);
+    public abstract void dialogueCompleted();
 }

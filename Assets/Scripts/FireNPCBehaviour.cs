@@ -15,20 +15,27 @@ public class FireNPCBehaviour : NPCBehaviour
 
     }
 
-    public override void interact(Player player)
+    public override void interact(NPC npc)
     {
+        Player player = FindObjectOfType<Player>();
         if (player.fireTreesLeft == 0)
         {
             List<string> sentences = new List<string>();
             sentences.Add("You shall pass");
-            FindObjectOfType<DialogueTrigger>().TriggerDialogue(sentences);
-            Destroy(this.gameObject);
+            FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, sentences);
         }
         else
         {
             List<string> sentences = new List<string>();
             sentences.Add("You shall not pass");
-            FindObjectOfType<DialogueTrigger>().TriggerDialogue(sentences);
+            FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, sentences);
+        }
+    }
+    
+    public override void dialogueCompleted() {
+        Player player = FindObjectOfType<Player>();
+        if (player.fireTreesLeft == 0) {
+            Destroy(this.gameObject);
         }
     }
 }
