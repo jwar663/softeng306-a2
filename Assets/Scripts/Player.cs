@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -160,6 +161,7 @@ public class Player : MonoBehaviour
         if (hp <= 0) {
             hp = 0;
             alive = false;
+            SceneManager.LoadScene("GameOverScene");
         }
         
         Debug.Log("HP: " + hp);
