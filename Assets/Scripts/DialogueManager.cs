@@ -10,12 +10,25 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
     public Animator animator;
     public Player player;
+    
+    private bool ignoringFirstPress;
 
     private Queue<string> sentences;
     // Start is called before the first frame update
     void Start()
     {
+        ignoringFirstPress = true;
         sentences = new Queue<string>();
+    }
+    
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.X)) {
+            if (ignoringFirstPress) {
+                ignoringFirstPress = false;
+            } else {
+                DisplayNextSentence();
+            }
+        }
     }
 
     public void StartDialogue(Dialogue dialogue)
