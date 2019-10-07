@@ -7,6 +7,9 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame ()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Game.levelName = "Forest"; // change to level select
+        Game.sceneName = "ForestScene"; // change to level select
+        Game.levelID = 1; // remove
+        SceneManager.LoadScene("LevelStartTransitionScene");
     }
 }
