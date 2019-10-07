@@ -35,6 +35,7 @@ public class ForrestGameController : NPCBehaviour
     void Update()
     {
         scoreText.text = score.ToString();
+        DataPassingScript.Score = score;
     }
 
     void moveCamera(Vector3 cameraPos, Vector3 newPos, Camera camera)
