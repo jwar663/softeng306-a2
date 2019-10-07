@@ -12,12 +12,15 @@ public class DialogueManager : MonoBehaviour
     public Player player;
     
     private bool ignoringFirstPress;
+    private bool inDialogue;
 
     private Queue<string> sentences;
-    // Start is called before the first frame update
+    private NPC npc;
+    
     void Start()
     {
         ignoringFirstPress = true;
+        inDialogue = false;
         sentences = new Queue<string>();
     }
     
@@ -25,7 +28,7 @@ public class DialogueManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Space)) {
             if (ignoringFirstPress) {
                 ignoringFirstPress = false;
-            } else {
+            } else if (inDialogue) {
                 DisplayNextSentence();
             }
         }
@@ -33,9 +36,13 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        inDialogue = true;
+        ignoringFirstPress = true;
         player.setCanMove(false);
         animator.SetBool("IsOpen", true);
         nameText.text = dialogue.name;
+        
+        npc = dialogue.npc;
 
         sentences.Clear();
 
@@ -64,9 +71,13 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        ignoringFirstPress = true;
+        inDialogue = false;
         player.setCanMove(true);
         animator.SetBool("IsOpen", false);
+        
+        if (npc != null) {
+            npc.dialogueCompleted();
+        }
     }
 
 }

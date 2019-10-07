@@ -133,11 +133,14 @@ public class Player : MonoBehaviour
             
             Vector2 targetPosition = myRigidbody.position + offset;
             
+            // 1/2 interaction zone
+            float delta = 0.75f;
+            
             // if the player is facing a firetree that is on fire, extinguish it
             foreach (FireTree fireTree in fireTrees) {
                 Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
-                if (fireTreePosition.x - 0.5f < targetPosition.x && fireTreePosition.x + 0.5f > targetPosition.x) {
-                    if (fireTreePosition.y - 0.5f < targetPosition.y && fireTreePosition.y + 0.5f > targetPosition.y) {
+                if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
+                    if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
                         if (fireTree.isOnFire()) {
                             animator.SetBool("acting", true);
                             fireTree.putOut();
@@ -151,10 +154,16 @@ public class Player : MonoBehaviour
             
             // if the player is facing an npc, interact with it
             foreach (NPC npc in npcs) {
+                if (npc == null) {
+                    continue;
+                }
+                
                 Vector2 npcPosition = new Vector2(npc.gameObject.transform.position.x, npc.gameObject.transform.position.y);
-                if (npcPosition.x - 0.5f < targetPosition.x && npcPosition.x + 0.5f > targetPosition.x) {
-                    if (npcPosition.y - 0.5f < targetPosition.y && npcPosition.y + 0.5f > targetPosition.y) {
-                        npc.talkTo(this);
+                if (npcPosition.x - delta < targetPosition.x && npcPosition.x + delta > targetPosition.x) {
+                    if (npcPosition.y - delta < targetPosition.y && npcPosition.y + delta > targetPosition.y) {
+                        if (canMove) {
+                            npc.talkTo();
+                        }
                     }
                 }
             }

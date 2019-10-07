@@ -9,10 +9,12 @@ NPCs should have an NPC.cs script and another script extending the abstract NPCB
 */
 public class NPC : MonoBehaviour
 {
+    NPCBehaviour behaviour;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        behaviour = GetComponent<NPCBehaviour>();
     }
 
     // Update is called once per frame
@@ -21,11 +23,15 @@ public class NPC : MonoBehaviour
         
     }
     
-    public void talkTo(Player player) {
-        NPCBehaviour behaviour = GetComponent<NPCBehaviour>();
-        
+    public void talkTo() {
         if (behaviour != null) {
-            behaviour.interact(player);
+            behaviour.interact(this);
+        }
+    }
+    
+    public void dialogueCompleted() {
+        if (behaviour != null) {
+            behaviour.dialogueCompleted();
         }
     }
 }

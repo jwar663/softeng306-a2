@@ -225,8 +225,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.7371112}
-  m_AnchoredPosition: {x: -434.8, y: 278.4}
-  m_SizeDelta: {x: 869.6, y: -147.9}
+  m_AnchoredPosition: {x: -487.8, y: 430.03}
+  m_SizeDelta: {x: 832.1, y: -254.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &304987415
 MonoBehaviour:
@@ -16252,6 +16252,7 @@ MonoBehaviour:
     name: Fire Lord
     sentences:
     - you shall pass
+    npc: {fileID: 0}
 --- !u!1 &2010236035
 GameObject:
   m_ObjectHideFlags: 0
