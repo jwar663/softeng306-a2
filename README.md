@@ -2,7 +2,7 @@ SOFTENG 306 - Assignment 2
 
 Serious game project themed around climate change.
 
-Move with the arrow keys and interact with objects you're facing using 'x'. Hold shift to run.
+Move with the arrow keys and interact with objects you're facing using X or space. Hold shift to run.
 
 | Name | GitHub Username  | UoA Username |
 | ---- | ---------------- | ------------ |
