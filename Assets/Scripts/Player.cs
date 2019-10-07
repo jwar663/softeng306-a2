@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private bool onFire;
     private bool alive;
     private bool canMove;
+    public ForrestGameController controller;
     
     private Rigidbody2D myRigidbody;
     // how much the player's position should change
@@ -147,6 +148,7 @@ public class Player : MonoBehaviour
                             FindObjectOfType<AudioManager>().Play("PutOut");
                             fireTreesLeft--;
                             Invoke("resetActingAnimationState", 0.5f);
+                            controller.score += 500;
                         }
                     }
                 }

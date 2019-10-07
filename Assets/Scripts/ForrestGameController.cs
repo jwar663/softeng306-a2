@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ForrestGameController : NPCBehaviour
 {
@@ -12,6 +13,8 @@ public class ForrestGameController : NPCBehaviour
     public Transform smallFire;
     public Camera camera;
     private bool isCompleted = true;
+    public int score = 0;
+    public Text scoreText;
 
     public override void dialogueCompleted()
     {
@@ -25,13 +28,13 @@ public class ForrestGameController : NPCBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("Run");
+        //StartCoroutine("Run");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        scoreText.text = score.ToString();
     }
 
     void moveCamera(Vector3 cameraPos, Vector3 newPos, Camera camera)
