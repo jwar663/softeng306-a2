@@ -4703,7 +4703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npc: {fileID: 1145512231}
   portal: {fileID: 622228054}
-  burningTree: {fileID: 822115633}
+  burningTree: {fileID: 1466650470}
   largeFire: {fileID: 1852637782}
   smallFire: {fileID: 751001659}
   camera: {fileID: 519420031}
