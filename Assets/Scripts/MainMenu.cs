@@ -7,8 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame ()
     {
-        //FindObjectOfType<AudioManager>().Play("Confirm");
-        SceneManager.LoadScene("LevelSelectScene");
+        FindObjectOfType<AudioManager>().Play("Confirm");
+        SceneManager.LoadScene("Intro");
     }
 
     public void QuitGame()
