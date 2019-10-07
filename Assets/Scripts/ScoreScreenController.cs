@@ -13,6 +13,10 @@ public class ScoreScreenController : MonoBehaviour
     {
         score.text = DataPassingScript.score.ToString();
         int bonus = (int)(2000 - (DataPassingScript.time / 50.0f * 2000));
+        if (bonus < 0)
+        {
+            bonus = 0;
+        }
         timeBonus.text = bonus.ToString();
         total.text = (bonus + DataPassingScript.score).ToString();
     }

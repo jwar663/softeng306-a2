@@ -31,7 +31,7 @@ public class IntroSceneController : NPCBehaviour
             List<string> dialogue = new List<string>();
             dialogue.Add("Look at the world.....");
             dialogue.Add("....Look at what climate change has done.");
-            dialogue.Add("...it has destroyed the world irreversably.");
+            dialogue.Add("...it has destroyed the world irreversibly.");
             dialogue.Add("But there is still hope.");
             dialogue.Add("You must travel back in time to climate disasters and stop them from ever happening");
             dialogue.Add("You are humanity's last hope!");

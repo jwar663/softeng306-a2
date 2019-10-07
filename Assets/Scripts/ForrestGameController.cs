@@ -28,7 +28,7 @@ public class ForrestGameController : NPCBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine("Run");
+        StartCoroutine("Run");
     }
 
     // Update is called once per frame
