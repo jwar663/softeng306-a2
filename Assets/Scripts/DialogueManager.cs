@@ -20,7 +20,10 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        player.setCanMove(false);
+        if (player != null)
+        {
+            player.setCanMove(false);
+        }
         animator.SetBool("IsOpen", true);
         nameText.text = dialogue.name;
 
@@ -51,7 +54,10 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        player.setCanMove(true);
+        if (player != null)
+        {
+            player.setCanMove(true);
+        }
         animator.SetBool("IsOpen", false);
     }
 
