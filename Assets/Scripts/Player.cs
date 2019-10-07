@@ -6,6 +6,10 @@ public class Player : MonoBehaviour
 {
 
     public float speed;
+    private int hp;
+    private bool onFire;
+    private bool alive;
+    
     private Rigidbody2D myRigidbody;
     // how much the player's position should change
     private Vector3 change;
@@ -34,6 +38,9 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
+        hp = 100;
+        onFire = false;
+        alive = true;
         
         fireTreesLeft = fireTrees.Count;
     }
@@ -50,13 +57,15 @@ public class Player : MonoBehaviour
         //Debug.Log(change);
         updateAnimationAndMove();
         updateKeyboard();
-
         
+        if (onFire && Random.Range(0.0f, 1.0f) < 0.25f) {
+            reduceHP(1);
+        }
     }
 
     void updateAnimationAndMove()
     {
-        if (change != Vector3.zero)
+        if (change != Vector3.zero && alive)
         {
             MoveCharacter();
             animator.SetFloat("moveX", change.x);
@@ -141,5 +150,25 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+    
+    public void reduceHP(int x) {
+        hp -= x;
+        
+        if (hp <= 0) {
+            hp = 0;
+            alive = false;
+        }
+        
+        Debug.Log("HP: " + hp);
+        FindObjectOfType<ProgressBar>().GetCurrentProgress(getHP());
+    }
+
+    public int getHP() {
+        return hp;
+    }
+    
+    public void setOnFire(bool onFire) {
+        this.onFire = onFire;
     }
 }
