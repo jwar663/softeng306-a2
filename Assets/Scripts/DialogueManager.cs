@@ -22,7 +22,7 @@ public class DialogueManager : MonoBehaviour
     }
     
     void Update() {
-        if (Input.GetKeyDown(KeyCode.X)) {
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Space)) {
             if (ignoringFirstPress) {
                 ignoringFirstPress = false;
             } else {
@@ -64,6 +64,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        ignoringFirstPress = true;
         player.setCanMove(true);
         animator.SetBool("IsOpen", false);
     }

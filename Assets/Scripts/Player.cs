@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
         }
         
         // if 'x' pressed
-        if (Input.GetKeyDown(KeyCode.X)) {
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Space)) {
             // calculate what square the player is facing
             Vector2 offset;
             switch (facingDirection) {

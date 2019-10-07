@@ -17,14 +17,14 @@ Move with the arrow keys and interact with objects you're facing using 'x'. Hold
 
 TODO:
 
-* Implement level select scene
-* Implement simple HUD (health bar)
-* Implement dialogue UI used for interacting with NPCs
-* Implement start menu and game over/victory menus
 * Improve story of first prototype level, in particular making the mechanics and objectives of the game obvious to the player, and adding some kind of loss condition
 
 * Implement other menus and functionality e.g. settings, savefiles
 * Implement more levels that are more complex
+* ~Implement level select scene~
+* ~Implement simple HUD (health bar)~
+* ~Implement dialogue UI used for interacting with NPCs~
+* ~Implement start menu and game over/victory menus~
 
 ---
 
