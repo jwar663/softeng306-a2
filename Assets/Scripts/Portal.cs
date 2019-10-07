@@ -8,7 +8,7 @@ public class Portal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<AudioManager>().Play("Portal");
+        
     }
 
     // Update is called once per frame
@@ -19,6 +19,6 @@ public class Portal : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other) {
         // TODO set some variables in Game so we know the player has completed the level
-        SceneManager.LoadScene("LevelSelectScene");
+        SceneManager.LoadScene("EndGame");
     }
 }

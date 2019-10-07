@@ -21,9 +21,4 @@ public class EndGame : MonoBehaviour
     {
         
     }
-
-    public void playClick()
-    {
-        FindObjectOfType<AudioManager>().Play("Confirm");
-    }
 }
