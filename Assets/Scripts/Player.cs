@@ -170,6 +170,10 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("GameOverScene");
         }
         
+        if (x >= 10) {
+            FindObjectOfType<AudioManager>().Play("Pain");
+        }
+        
         Debug.Log("HP: " + hp);
         FindObjectOfType<ProgressBar>().GetCurrentProgress(getHP());
     }

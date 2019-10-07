@@ -15900,6 +15900,13 @@ MonoBehaviour:
     loop: 1
     spatialBlend: 1
     source: {fileID: 0}
+  - name: Pain
+    clip: {fileID: 8300000, guid: da8e8207d19525043ab49d0f44fd8862, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    spatialBlend: 1
+    source: {fileID: 0}
 --- !u!4 &1811694916
 Transform:
   m_ObjectHideFlags: 0
@@ -16378,7 +16385,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2010236041
 BoxCollider2D:
