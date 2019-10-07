@@ -84,7 +84,12 @@ public class Player : MonoBehaviour
     //method to allow movement, because want to be able to move the character from other places. Not just keyboa rd
     void MoveCharacter()
     {
-        myRigidbody.MovePosition( transform.position + change * speed * Time.deltaTime);
+        float effectiveSpeed = speed;
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
+            effectiveSpeed *= 2;
+        }
+        
+        myRigidbody.MovePosition( transform.position + change * effectiveSpeed * Time.deltaTime);
     }
     
     void resetActingAnimationState() {
@@ -163,6 +168,10 @@ public class Player : MonoBehaviour
             hp = 0;
             alive = false;
             SceneManager.LoadScene("GameOverScene");
+        }
+        
+        if (x >= 10) {
+            FindObjectOfType<AudioManager>().Play("Pain");
         }
         
         Debug.Log("HP: " + hp);

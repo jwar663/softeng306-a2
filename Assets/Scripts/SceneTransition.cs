@@ -11,10 +11,9 @@ public class SceneTransition : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-       // if (other.CompareTag("Player") && !other.isTrigger){
-
-            SceneManager.LoadScene(sceneToLoad); 
-        //}
-        
+        Game.levelName = "Forest";
+        Game.sceneName = "ForestScene";
+        Game.levelID = 1;
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
