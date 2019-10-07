@@ -38,5 +38,19 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Play();
     }
+
+    //stop a sound that is currently playing.
+    public void Stop(string name)
+    {
+
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        //show warning if sound is not found
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " was not found.");
+            return;
+        }
+        s.source.Stop();
+    }
 }
 
