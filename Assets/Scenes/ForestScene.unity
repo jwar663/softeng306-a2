@@ -5558,7 +5558,7 @@ GameObject:
   - component: {fileID: 1145512229}
   - component: {fileID: 1145512231}
   m_Layer: 0
-  m_Name: ForrestGameController
+  m_Name: ForestGameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5584,6 +5584,11 @@ MonoBehaviour:
   camera: {fileID: 519420031}
   score: 0
   scoreText: {fileID: 1396039278}
+  fireTrees: []
+  npcs: []
+  totalFireTrees: 0
+  fireTreesTarget: 0
+  fireTreesExtinguished: 0
 --- !u!4 &1145512230
 Transform:
   m_ObjectHideFlags: 0
@@ -5755,16 +5760,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  controller: {fileID: 1145512229}
-  fireTrees:
-  - {fileID: 1852031441}
-  - {fileID: 1466650466}
-  - {fileID: 822115629}
-  - {fileID: 368378265}
-  npcs:
-  - {fileID: 1187841373}
-  - {fileID: 1852637783}
-  fireTreesLeft: 0
 --- !u!95 &1169603822
 Animator:
   serializedVersion: 3

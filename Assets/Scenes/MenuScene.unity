@@ -1538,6 +1538,7 @@ MonoBehaviour:
   sceneName: 
   score: 0
   time: 0
+  unlockedItems: 010101
 --- !u!4 &1324796015
 Transform:
   m_ObjectHideFlags: 0

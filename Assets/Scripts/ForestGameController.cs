@@ -16,6 +16,7 @@ public class ForestGameController : NPCBehaviour
     public int score = 0;
     public Text scoreText;
     
+    private Player player;
     public List<FireTree> fireTrees;
     public List<NPC> npcs;
     
@@ -38,6 +39,12 @@ public class ForestGameController : NPCBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // stops errors from filling output when forest scene run without running menu scene
+        if (GameManager.getInstance() == null) {
+            (new GameObject("GameManager")).AddComponent<GameManager>();
+        }
+        
+        player = FindObjectOfType<Player>();
         fireTrees = new List<FireTree>(FindObjectsOfType<FireTree>());
         npcs = new List<NPC>(FindObjectsOfType<NPC>());
         
@@ -75,6 +82,7 @@ public class ForestGameController : NPCBehaviour
         {
             yield return null;
         }
+        player.setCanMove(false);
 
         for (int i = 0; i<200; i++)
         {
@@ -90,6 +98,7 @@ public class ForestGameController : NPCBehaviour
         {
             yield return null;
         }
+        player.setCanMove(false);
 
         for (int i = 0; i < 200; i++)
         {
@@ -105,6 +114,7 @@ public class ForestGameController : NPCBehaviour
         {
             yield return null;
         }
+        player.setCanMove(false);
 
         for (int i = 0; i < 200; i++)
         {
@@ -121,6 +131,7 @@ public class ForestGameController : NPCBehaviour
         {
             yield return null;
         }
+        player.setCanMove(false);
 
         for (int i = 0; i < 200; i++)
         {

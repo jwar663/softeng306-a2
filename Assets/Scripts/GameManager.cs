@@ -27,4 +27,11 @@ public class GameManager : MonoBehaviour
     
     public int score = 0;
     public float time = 0;
+    
+    
+    public bool[] unlockedItems = new bool[] {
+        true,   // water bucket
+        true,   // water gun
+        true
+    };
 }

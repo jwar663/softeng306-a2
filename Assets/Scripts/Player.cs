@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     // current direction the player is facing
     private Direction facingDirection = Direction.DOWN;
     
+    // index of the currently selected item
+    private int selectedItem;
+    
     enum Direction {
         UP,
         DOWN,
