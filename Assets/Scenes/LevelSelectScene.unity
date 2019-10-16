@@ -44864,10 +44864,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  controller: {fileID: 0}
-  fireTrees: []
-  npcs: []
-  fireTreesLeft: 0
 --- !u!95 &1169603822
 Animator:
   serializedVersion: 3
@@ -46294,6 +46290,21 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneToLoad
       value: LevelStartTransitionScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610862424313622522, guid: 3631c0391f847784ebc8a8b22ced8247,
+        type: 3}
+      propertyPath: levelName
+      value: Forest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610862424313622522, guid: 3631c0391f847784ebc8a8b22ced8247,
+        type: 3}
+      propertyPath: sceneName
+      value: ForestScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610862424313622522, guid: 3631c0391f847784ebc8a8b22ced8247,
+        type: 3}
+      propertyPath: levelID
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3631c0391f847784ebc8a8b22ced8247, type: 3}

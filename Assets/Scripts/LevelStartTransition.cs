@@ -11,17 +11,19 @@ public class LevelStartTransition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Game.levelID == -1) {
-            titleText.text = Game.levelName;
+        if (GameManager.getInstance().levelID == -1) {
+            titleText.text = GameManager.getInstance().levelName;
         } else {
-            titleText.text = "Level " + Game.levelID + ": " + Game.levelName;
+            titleText.text = "Level " + GameManager.getInstance().levelID + ": " + GameManager.getInstance().levelName;
         }
+        
+        Debug.Log("Level " + GameManager.getInstance().levelID + ": " + GameManager.getInstance().levelName);
         
         Invoke("startScene", 2.0f);
     }
     
     void startScene() {
-        SceneManager.LoadScene(Game.sceneName);
+        SceneManager.LoadScene(GameManager.getInstance().sceneName);
     }
 
     // Update is called once per frame

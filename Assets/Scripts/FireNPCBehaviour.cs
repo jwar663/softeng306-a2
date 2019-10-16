@@ -17,8 +17,8 @@ public class FireNPCBehaviour : NPCBehaviour
 
     public override void interact(NPC npc)
     {
-        Player player = FindObjectOfType<Player>();
-        if (player.fireTreesLeft == 0)
+        ForestGameController controller = FindObjectOfType<ForestGameController>();
+        if (controller.fireTreesExtinguished >= controller.fireTreesTarget)
         {
             List<string> sentences = new List<string>();
             sentences.Add("You shall pass");
@@ -33,8 +33,8 @@ public class FireNPCBehaviour : NPCBehaviour
     }
     
     public override void dialogueCompleted() {
-        Player player = FindObjectOfType<Player>();
-        if (player.fireTreesLeft == 0) {
+        ForestGameController controller = FindObjectOfType<ForestGameController>();
+        if (controller.fireTreesExtinguished >= controller.fireTreesTarget) {
             Destroy(this.gameObject);
         }
     }

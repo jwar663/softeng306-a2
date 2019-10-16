@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private bool onFire;
     private bool alive;
     private bool canMove;
-    public ForrestGameController controller;
+    private ForestGameController controller;
     
     private Rigidbody2D myRigidbody;
     // how much the player's position should change
@@ -20,14 +20,6 @@ public class Player : MonoBehaviour
     
     // current direction the player is facing
     private Direction facingDirection = Direction.DOWN;
-    
-    // all FireTrees in the scene
-    public List<FireTree> fireTrees;
-    // all NPCs in the scene
-    public List<NPC> npcs;
-    
-    // number of fire trees left to extinguish
-    public int fireTreesLeft;
     
     enum Direction {
         UP,
@@ -46,7 +38,7 @@ public class Player : MonoBehaviour
         alive = true;
         canMove = true;
         
-        fireTreesLeft = fireTrees.Count;
+        controller = FindObjectOfType<ForestGameController>();
     }
 
     // Update is called once per frame
@@ -138,15 +130,15 @@ public class Player : MonoBehaviour
             float delta = 0.75f;
             
             // if the player is facing a firetree that is on fire, extinguish it
-            foreach (FireTree fireTree in fireTrees) {
+            foreach (FireTree fireTree in controller.fireTrees) {
                 Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
                 if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
                     if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
                         if (fireTree.isOnFire()) {
                             animator.SetBool("acting", true);
                             fireTree.putOut();
+                            controller.fireTreesExtinguished++;
                             FindObjectOfType<AudioManager>().Play("PutOut");
-                            fireTreesLeft--;
                             Invoke("resetActingAnimationState", 0.5f);
                             controller.score += 500;
                         }
@@ -155,7 +147,7 @@ public class Player : MonoBehaviour
             }
             
             // if the player is facing an npc, interact with it
-            foreach (NPC npc in npcs) {
+            foreach (NPC npc in controller.npcs) {
                 if (npc == null) {
                     continue;
                 }

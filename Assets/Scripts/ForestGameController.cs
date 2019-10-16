@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ForrestGameController : NPCBehaviour
+public class ForestGameController : NPCBehaviour
 {
     public NPC npc;
     private bool notRun = true;
@@ -15,6 +15,16 @@ public class ForrestGameController : NPCBehaviour
     private bool isCompleted = true;
     public int score = 0;
     public Text scoreText;
+    
+    public List<FireTree> fireTrees;
+    public List<NPC> npcs;
+    
+    // total number of fire trees
+    public int totalFireTrees;
+    // number of fire trees to complete level (not all have to be extinguished)
+    public int fireTreesTarget;
+    // number of fire trees extinguished
+    public int fireTreesExtinguished;
 
     public override void dialogueCompleted()
     {
@@ -28,6 +38,9 @@ public class ForrestGameController : NPCBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fireTrees = new List<FireTree>(FindObjectsOfType<FireTree>());
+        npcs = new List<NPC>(FindObjectsOfType<NPC>());
+        
         StartCoroutine("Run");
     }
 
@@ -35,8 +48,8 @@ public class ForrestGameController : NPCBehaviour
     void Update()
     {
         scoreText.text = score.ToString();
-        DataPassingScript.score = score;
-        DataPassingScript.time = Time.timeSinceLevelLoad;
+        GameManager.getInstance().score = score;
+        GameManager.getInstance().time = Time.timeSinceLevelLoad;
     }
 
     void moveCamera(Vector3 cameraPos, Vector3 newPos, Camera camera)

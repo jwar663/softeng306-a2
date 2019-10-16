@@ -11,14 +11,14 @@ public class ScoreScreenController : MonoBehaviour
     public TextMeshProUGUI total;
     void Start()
     {
-        score.text = DataPassingScript.score.ToString();
-        int bonus = (int)(2000 - (DataPassingScript.time / 50.0f * 2000));
+        score.text = GameManager.getInstance().score.ToString();
+        int bonus = (int)(2000 - (GameManager.getInstance().time / 50.0f * 2000));
         if (bonus < 0)
         {
             bonus = 0;
         }
         timeBonus.text = bonus.ToString();
-        total.text = (bonus + DataPassingScript.score).ToString();
+        total.text = (bonus + GameManager.getInstance().score).ToString();
     }
 
     // Update is called once per frame

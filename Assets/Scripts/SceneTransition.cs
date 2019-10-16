@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 public class SceneTransition : MonoBehaviour
 {
 
-    public string sceneToLoad;
+    public string levelName;
+    public string sceneName;
+    public int levelID;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Game.levelName = "Forest";
-        Game.sceneName = "ForestScene";
-        Game.levelID = 1;
-        SceneManager.LoadScene(sceneToLoad);
+        GameManager.getInstance().levelName = levelName;
+        GameManager.getInstance().sceneName = sceneName;
+        GameManager.getInstance().levelID = levelID;
+        SceneManager.LoadScene("LevelStartTransitionScene");
     }
 }
