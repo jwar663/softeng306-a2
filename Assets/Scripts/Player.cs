@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
         selectedItem = GameManager.getInstance().items[selectedItemIndex];
         
         controller = FindObjectOfType<ForestGameController>();
+        
+        updateItemView();
     }
 
     // Update is called once per frame
@@ -183,18 +185,31 @@ public class Player : MonoBehaviour
     }
     
     private void changeItem(int offset) {
+        selectedItemIndex = getItemIndex(offset);
+        selectedItem = GameManager.getInstance().items[selectedItemIndex];
+        
+        updateItemView();
+    }
+    
+    private int getItemIndex(int offset) {
         int totalItems = GameManager.getInstance().items.Count;
         
-        selectedItemIndex += offset;
-        selectedItemIndex = ((selectedItemIndex % totalItems) + totalItems) % totalItems;
-        while (!GameManager.getInstance().items[selectedItemIndex].unlocked) {
-            selectedItemIndex += offset;
-            selectedItemIndex = ((selectedItemIndex % totalItems) + totalItems) % totalItems;
+        int index = selectedItemIndex + offset;
+        index = ((index % totalItems) + totalItems) % totalItems;
+        while (!GameManager.getInstance().items[index].unlocked) {
+            index += offset;
+            index = ((index % totalItems) + totalItems) % totalItems;
         }
         
-        selectedItemIndex = ((selectedItemIndex % totalItems) + totalItems) % totalItems;
-        selectedItem = GameManager.getInstance().items[selectedItemIndex];
-        Debug.Log(selectedItem.name);
+        return index;
+    }
+    
+    private void updateItemView() {
+        Sprite previous = GameManager.getInstance().items[getItemIndex(-1)].sprite;
+        Sprite current = GameManager.getInstance().items[selectedItemIndex].sprite;
+        Sprite next = GameManager.getInstance().items[getItemIndex(1)].sprite;
+        
+        FindObjectOfType<ItemManager>().setItems(previous, current, next);
     }
     
     public void reduceHP(int x) {

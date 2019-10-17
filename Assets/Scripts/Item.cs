@@ -6,6 +6,7 @@ public class Item : MonoBehaviour
 {
     public string name;
     public bool unlocked;
+    public Sprite sprite;
     
     // Start is called before the first frame update
     void Start()
@@ -17,11 +18,5 @@ public class Item : MonoBehaviour
     void Update()
     {
         
-    }
-    
-    public Item actualConstructor(string name) {
-        this.name = name;
-        unlocked = false;
-        return this;
     }
 }
