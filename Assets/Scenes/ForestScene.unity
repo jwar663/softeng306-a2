@@ -5826,7 +5826,7 @@ MonoBehaviour:
   fireTrees: []
   npcs: []
   totalFireTrees: 0
-  fireTreesTarget: 0
+  fireTreesTarget: 2
   fireTreesExtinguished: 0
 --- !u!4 &1145512230
 Transform:
