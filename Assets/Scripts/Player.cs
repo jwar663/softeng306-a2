@@ -205,11 +205,10 @@ public class Player : MonoBehaviour
     }
     
     private void updateItemView() {
-        Sprite previous = GameManager.getInstance().items[getItemIndex(-1)].sprite;
-        Sprite current = GameManager.getInstance().items[selectedItemIndex].sprite;
-        Sprite next = GameManager.getInstance().items[getItemIndex(1)].sprite;
+        Item previous = GameManager.getInstance().items[getItemIndex(-1)];
+        Item next = GameManager.getInstance().items[getItemIndex(1)];
         
-        FindObjectOfType<ItemManager>().setItems(previous, current, next);
+        FindObjectOfType<ItemManager>().setItems(previous, selectedItem, next);
     }
     
     public void reduceHP(int x) {

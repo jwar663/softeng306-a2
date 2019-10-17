@@ -1435,6 +1435,9 @@ MonoBehaviour:
   name: Water Gun
   unlocked: 1
   sprite: {fileID: 21300004, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
+  colour:
+    serializedVersion: 2
+    rgba: 4286595072
 --- !u!4 &1033169052
 Transform:
   m_ObjectHideFlags: 0
@@ -1582,6 +1585,9 @@ MonoBehaviour:
   name: Water Bucket
   unlocked: 1
   sprite: {fileID: 21300002, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
+  colour:
+    serializedVersion: 2
+    rgba: 4286595072
 --- !u!4 &1248717557
 Transform:
   m_ObjectHideFlags: 0
@@ -2635,6 +2641,9 @@ MonoBehaviour:
   name: Shield
   unlocked: 1
   sprite: {fileID: 21300006, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
+  colour:
+    serializedVersion: 2
+    rgba: 4280287328
 --- !u!4 &2041994018
 Transform:
   m_ObjectHideFlags: 0
