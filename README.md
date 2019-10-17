@@ -1,8 +1,24 @@
-SOFTENG 306 - Assignment 2
+# SOFTENG 306 - Assignment 2
 
 Serious game project themed around climate change.
 
-Move with the arrow keys and interact with objects you're facing using X or space. Hold shift to run.
+---
+
+### Controls
+
+| Action | Key |
+| ---- | ---- |
+| Move | Arrow keys |
+| Interact | Space, X |
+| Use item | Space, X |
+| Run | Shift |
+| Previous item | Q |
+| Next item | E |
+| Skip cutscene | M |
+
+---
+
+### Team Members
 
 | Name | GitHub Username  | UoA Username |
 | ---- | ---------------- | ------------ |
@@ -15,7 +31,7 @@ Move with the arrow keys and interact with objects you're facing using X or spac
 
 ---
 
-Build Instructions:
+### Build Instructions:
 
 Open the project using Unity 2018.4.10f1. Create a folder "Build" in the project directory. File > Build and Run the project, and select the Build directory. The executable will be located at Build/Rpg2DTopDown.exe.
 
@@ -23,7 +39,7 @@ A build has been provided with the [Prototype](https://github.com/veratrum/softe
 
 ---
 
-TODO:
+### TODO:
 
 * Implement other menus and functionality e.g. settings, savefiles
 * Implement more levels that are more complex
@@ -35,7 +51,7 @@ TODO:
 
 ---
 
-Notes/Troubleshooting:
+### Notes/Troubleshooting:
 
 Use Unity 2018.4.10f1 (LTS), if you don't it probably won't work.
 

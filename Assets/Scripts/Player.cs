@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     // current direction the player is facing
     private Direction facingDirection = Direction.DOWN;
     
-    // index of the currently selected item
-    private int selectedItem;
+    private int selectedItemIndex;
+    private Item selectedItem;
     
     enum Direction {
         UP,
@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
         onFire = false;
         alive = true;
         canMove = true;
+        selectedItemIndex = 0;
+        selectedItem = GameManager.getInstance().items[selectedItemIndex];
         
         controller = FindObjectOfType<ForestGameController>();
     }
@@ -106,7 +108,7 @@ public class Player : MonoBehaviour
         }
         
         // if 'x' pressed
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Space)) {
             // calculate what square the player is facing
             Vector2 offset;
             switch (facingDirection) {
@@ -132,22 +134,7 @@ public class Player : MonoBehaviour
             // 1/2 interaction zone
             float delta = 0.75f;
             
-            // if the player is facing a firetree that is on fire, extinguish it
-            foreach (FireTree fireTree in controller.fireTrees) {
-                Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
-                if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
-                    if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
-                        if (fireTree.isOnFire()) {
-                            animator.SetBool("acting", true);
-                            fireTree.putOut();
-                            controller.fireTreesExtinguished++;
-                            FindObjectOfType<AudioManager>().Play("PutOut");
-                            Invoke("resetActingAnimationState", 0.5f);
-                            controller.score += 500;
-                        }
-                    }
-                }
-            }
+            bool interactedWithNPC = false;
             
             // if the player is facing an npc, interact with it
             foreach (NPC npc in controller.npcs) {
@@ -159,12 +146,55 @@ public class Player : MonoBehaviour
                 if (npcPosition.x - delta < targetPosition.x && npcPosition.x + delta > targetPosition.x) {
                     if (npcPosition.y - delta < targetPosition.y && npcPosition.y + delta > targetPosition.y) {
                         if (canMove) {
+                            interactedWithNPC = true;
                             npc.talkTo();
                         }
                     }
                 }
             }
+            
+            if (!interactedWithNPC) {
+                if (selectedItem.name == "Water Bucket") {
+                    // if the player is facing a firetree that is on fire, extinguish it
+                    foreach (FireTree fireTree in controller.fireTrees) {
+                        Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
+                        if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
+                            if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
+                                if (fireTree.isOnFire()) {
+                                    animator.SetBool("acting", true);
+                                    fireTree.putOut();
+                                    controller.fireTreesExtinguished++;
+                                    FindObjectOfType<AudioManager>().Play("PutOut");
+                                    Invoke("resetActingAnimationState", 0.5f);
+                                    controller.score += 500;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
+        
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            changeItem(-1);
+        } else if (Input.GetKeyDown(KeyCode.E)) {
+            changeItem(1);
+        }
+    }
+    
+    private void changeItem(int offset) {
+        int totalItems = GameManager.getInstance().items.Count;
+        
+        selectedItemIndex += offset;
+        selectedItemIndex = ((selectedItemIndex % totalItems) + totalItems) % totalItems;
+        while (!GameManager.getInstance().items[selectedItemIndex].unlocked) {
+            selectedItemIndex += offset;
+            selectedItemIndex = ((selectedItemIndex % totalItems) + totalItems) % totalItems;
+        }
+        
+        selectedItemIndex = ((selectedItemIndex % totalItems) + totalItems) % totalItems;
+        selectedItem = GameManager.getInstance().items[selectedItemIndex];
+        Debug.Log(selectedItem.name);
     }
     
     public void reduceHP(int x) {

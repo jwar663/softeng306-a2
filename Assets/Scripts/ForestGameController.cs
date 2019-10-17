@@ -57,6 +57,12 @@ public class ForestGameController : NPCBehaviour
         scoreText.text = score.ToString();
         GameManager.getInstance().score = score;
         GameManager.getInstance().time = Time.timeSinceLevelLoad;
+        
+        if (Input.GetKeyDown(KeyCode.M)) {
+            StopCoroutine("Run");
+            FindObjectOfType<DialogueManager>().EndDialogue();
+            camera.GetComponent<CameraMovement>().enabled = true;
+        }
     }
 
     void moveCamera(Vector3 cameraPos, Vector3 newPos, Camera camera)

@@ -17,6 +17,14 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         instance = this;
+        
+        items.Add((new Item()).actualConstructor("Water Bucket"));
+        items.Add((new Item()).actualConstructor("Water Gun"));
+        items.Add((new Item()).actualConstructor("Fire Hose"));
+        items.Add((new Item()).actualConstructor("???"));
+        
+        items[0].unlocked = true;
+        items[2].unlocked = true;
     }
     
     // for pre-level splash scene
@@ -28,10 +36,5 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public float time = 0;
     
-    
-    public bool[] unlockedItems = new bool[] {
-        true,   // water bucket
-        true,   // water gun
-        true
-    };
+    public List<Item> items = new List<Item>();
 }

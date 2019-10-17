@@ -78,7 +78,7 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         inDialogue = false;
         if (player != null)
