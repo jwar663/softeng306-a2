@@ -39,5 +39,9 @@ public class IntroSceneController : NPCBehaviour
             FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
             notRun = false;
         }
+        
+        if (Input.GetKeyDown(KeyCode.M)) {
+            FindObjectOfType<DialogueManager>().EndDialogue();
+        }
     }
 }

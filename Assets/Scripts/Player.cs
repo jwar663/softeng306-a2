@@ -45,7 +45,9 @@ public class Player : MonoBehaviour
         
         controller = FindObjectOfType<ForestGameController>();
         
-        updateItemView();
+        if (controller) {
+            updateItemView();
+        }
     }
 
     // Update is called once per frame
@@ -138,37 +140,39 @@ public class Player : MonoBehaviour
             
             bool interactedWithNPC = false;
             
-            // if the player is facing an npc, interact with it
-            foreach (NPC npc in controller.npcs) {
-                if (npc == null) {
-                    continue;
-                }
-                
-                Vector2 npcPosition = new Vector2(npc.gameObject.transform.position.x, npc.gameObject.transform.position.y);
-                if (npcPosition.x - delta < targetPosition.x && npcPosition.x + delta > targetPosition.x) {
-                    if (npcPosition.y - delta < targetPosition.y && npcPosition.y + delta > targetPosition.y) {
-                        if (canMove) {
-                            interactedWithNPC = true;
-                            npc.talkTo();
+            if (controller) {
+                // if the player is facing an npc, interact with it
+                foreach (NPC npc in controller.npcs) {
+                    if (npc == null) {
+                        continue;
+                    }
+                    
+                    Vector2 npcPosition = new Vector2(npc.gameObject.transform.position.x, npc.gameObject.transform.position.y);
+                    if (npcPosition.x - delta < targetPosition.x && npcPosition.x + delta > targetPosition.x) {
+                        if (npcPosition.y - delta < targetPosition.y && npcPosition.y + delta > targetPosition.y) {
+                            if (canMove) {
+                                interactedWithNPC = true;
+                                npc.talkTo();
+                            }
                         }
                     }
                 }
-            }
-            
-            if (!interactedWithNPC) {
-                if (selectedItem.name == "Water Bucket") {
-                    // if the player is facing a firetree that is on fire, extinguish it
-                    foreach (FireTree fireTree in controller.fireTrees) {
-                        Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
-                        if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
-                            if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
-                                if (fireTree.isOnFire()) {
-                                    animator.SetBool("acting", true);
-                                    fireTree.putOut();
-                                    controller.fireTreesExtinguished++;
-                                    FindObjectOfType<AudioManager>().Play("PutOut");
-                                    Invoke("resetActingAnimationState", 0.5f);
-                                    controller.score += 500;
+                
+                if (!interactedWithNPC) {
+                    if (selectedItem.name == "Water Bucket") {
+                        // if the player is facing a firetree that is on fire, extinguish it
+                        foreach (FireTree fireTree in controller.fireTrees) {
+                            Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
+                            if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
+                                if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
+                                    if (fireTree.isOnFire()) {
+                                        animator.SetBool("acting", true);
+                                        fireTree.putOut();
+                                        controller.fireTreesExtinguished++;
+                                        FindObjectOfType<AudioManager>().Play("PutOut");
+                                        Invoke("resetActingAnimationState", 0.5f);
+                                        controller.score += 500;
+                                    }
                                 }
                             }
                         }
@@ -177,10 +181,12 @@ public class Player : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            changeItem(-1);
-        } else if (Input.GetKeyDown(KeyCode.E)) {
-            changeItem(1);
+        if (controller) {
+            if (Input.GetKeyDown(KeyCode.Q)) {
+                changeItem(-1);
+            } else if (Input.GetKeyDown(KeyCode.E)) {
+                changeItem(1);
+            }
         }
     }
     
