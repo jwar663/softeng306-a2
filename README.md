@@ -59,6 +59,8 @@ You might have to select a scene in the project view to see what's going on when
 
 To disable CRLF warnings in git: `git config --global core.safecrlf false`
 
+If the release build doesn't work try restarting the editor and building it again.
+
 Parts of this project won't work properly unless you run it starting from the menu scene.
 
 ---
