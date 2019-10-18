@@ -164,6 +164,13 @@ public class Player : MonoBehaviour
                     switch (selectedItem.name) {
                     case "Water Bucket":
                         if (selectedItem.useOtherSprite) { // bucket is empty
+                            GameObject fountain = GameObject.FindWithTag("Fountain");
+                            float distance = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(fountain.transform.position.x - transform.position.x), 2.0f) + Mathf.Pow(Mathf.Abs(fountain.transform.position.y - transform.position.y), 2.0f));
+                            Debug.Log(distance);
+                            if (distance <= 2.0f) {
+                                selectedItem.useOtherSprite = false;
+                                updateItemView();
+                            }
                             break;
                         }
                         // if the player is facing a firetree that is on fire, extinguish it
