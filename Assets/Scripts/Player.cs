@@ -24,8 +24,7 @@ public class Player : MonoBehaviour
     private int selectedItemIndex;
     private Item selectedItem;
     
-    public float itemCooldownMin;
-    private float itemCooldown;
+    private float waterballCooldown;
     
     enum Direction {
         UP,
@@ -164,6 +163,9 @@ public class Player : MonoBehaviour
                 if (!interactedWithNPC) {
                     switch (selectedItem.name) {
                     case "Water Bucket":
+                        if (selectedItem.useOtherSprite) { // bucket is empty
+                            break;
+                        }
                         // if the player is facing a firetree that is on fire, extinguish it
                         foreach (FireTree fireTree in controller.fireTrees) {
                             Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
@@ -176,17 +178,28 @@ public class Player : MonoBehaviour
                                         FindObjectOfType<AudioManager>().Play("PutOut");
                                         Invoke("resetActingAnimationState", 0.5f);
                                         controller.score += 500;
+                                        selectedItem.useOtherSprite = true;
+                                        updateItemView();
                                     }
                                 }
                             }
                         }
                         break;
-                    case "Water Gun":
-                        shootWaterball();
-                        break;
                     default:
                         break;
                     }
+                }
+            }
+        }
+        
+        if (controller) {
+            if (Input.GetKey(KeyCode.X)) {
+                switch (selectedItem.name) {
+                case "Water Gun":
+                    shootWaterball();
+                    break;
+                default:
+                    break;
                 }
             }
         }
@@ -257,10 +270,10 @@ public class Player : MonoBehaviour
     }
     
     public void shootWaterball() {
-        if (Time.time - itemCooldown < itemCooldownMin) {
+        if (Time.time - waterballCooldown < GameManager.getInstance().waterballCooldown) {
             return;
         }
-        itemCooldown = Time.time;
+        waterballCooldown = Time.time;
         
         Vector2 force;
         float projectileSpeed = GameManager.getInstance().waterballSpeed;

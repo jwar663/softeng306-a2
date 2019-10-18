@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     
     public GameObject baseWaterball;
     public float waterballSpeed;
+    public float waterballCooldown;
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);

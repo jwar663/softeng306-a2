@@ -7,6 +7,8 @@ public class Item : MonoBehaviour
     public string name;
     public bool unlocked;
     public Sprite sprite;
+    public Sprite otherSprite;
+    public bool useOtherSprite = false;
     
     // Start is called before the first frame update
     void Start()

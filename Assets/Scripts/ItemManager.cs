@@ -24,9 +24,9 @@ public class ItemManager : MonoBehaviour
     }
     
     public void setItems(Item previous, Item current, Item next) {
-        previousItem.sprite = previous.sprite;
-        currentItem.sprite = current.sprite;
-        nextItem.sprite = next.sprite;
+        previousItem.sprite = previous.useOtherSprite ? previous.otherSprite : previous.sprite;
+        currentItem.sprite = current.useOtherSprite ? current.otherSprite : current.sprite;
+        nextItem.sprite = next.useOtherSprite ? next.otherSprite : next.sprite;
         itemName.text = current.name;
     }
 }

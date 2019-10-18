@@ -1435,6 +1435,8 @@ MonoBehaviour:
   name: Water Gun
   unlocked: 1
   sprite: {fileID: 21300004, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
+  otherSprite: {fileID: 0}
+  useOtherSprite: 0
 --- !u!4 &1033169052
 Transform:
   m_ObjectHideFlags: 0
@@ -1582,6 +1584,8 @@ MonoBehaviour:
   name: Water Bucket
   unlocked: 1
   sprite: {fileID: 21300002, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
+  otherSprite: {fileID: 21300014, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
+  useOtherSprite: 0
 --- !u!4 &1248717557
 Transform:
   m_ObjectHideFlags: 0
@@ -1636,6 +1640,7 @@ MonoBehaviour:
   - {fileID: 2041994017}
   baseWaterball: {fileID: 2001783547}
   waterballSpeed: 400
+  waterballCooldown: 0.5
 --- !u!4 &1324796015
 Transform:
   m_ObjectHideFlags: 0
@@ -2736,7 +2741,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300008, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2799,6 +2804,8 @@ MonoBehaviour:
   name: Shield
   unlocked: 1
   sprite: {fileID: 21300006, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
+  otherSprite: {fileID: 0}
+  useOtherSprite: 0
 --- !u!4 &2041994018
 Transform:
   m_ObjectHideFlags: 0

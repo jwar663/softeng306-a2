@@ -19,7 +19,7 @@ public class LevelStartTransition : MonoBehaviour
         
         Debug.Log("Level " + GameManager.getInstance().levelID + ": " + GameManager.getInstance().levelName);
         
-        Invoke("startScene", 2.0f);
+        Invoke("startScene", 1.0f);
     }
     
     void startScene() {
