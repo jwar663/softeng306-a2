@@ -59,6 +59,8 @@ You might have to select a scene in the project view to see what's going on when
 
 To disable CRLF warnings in git: `git config --global core.safecrlf false`
 
+Parts of this project won't work properly unless you run it starting from the menu scene.
+
 ---
 
 zapsplat_human_male_grunt_ouch_pain_001_15714.mp3 from https://www.zapsplat.com.

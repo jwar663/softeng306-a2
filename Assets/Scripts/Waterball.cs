@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fireball : MonoBehaviour
+public class Waterball : MonoBehaviour
 {
     public bool isBase;
     private Rigidbody2D rigidBody;
@@ -33,7 +33,7 @@ public class Fireball : MonoBehaviour
     }
     
     public void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "FireEnemy" || other.gameObject.tag == "Fireball" || isBase) {
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Waterball" || isBase) {
             return;
         }
         
@@ -43,9 +43,9 @@ public class Fireball : MonoBehaviour
         }
         hit = true;
         
-        Player player = other.gameObject.GetComponent<Player>();
-        if (player != null) {
-            player.reduceHP(10);
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        if (enemy != null && other.gameObject.tag == "FireEnemy") {
+            enemy.kill();
         }
         
         Destroy(gameObject);

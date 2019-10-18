@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
         GameObject fireball = GameObject.Instantiate(baseFireball, projectilePosition, projectileRotation) as GameObject;
         
         Fireball fireballScript = fireball.GetComponent<Fireball>();
+        fireballScript.isBase = false;
         fireballScript.move(force);
     }
     
@@ -82,5 +83,9 @@ public class Enemy : MonoBehaviour
     
     public void switchDirection() {
         direction *= -1;
+    }
+    
+    public void kill() {
+        Destroy(gameObject);
     }
 }

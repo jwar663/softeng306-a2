@@ -20,14 +20,17 @@ public class GameManager : MonoBehaviour
     public string levelName; // name of the currently selected level
     public string sceneName; // name of the currently selected scene
     
-    
     public int score = 0;
     public float time = 0;
     
     public List<Item> items = new List<Item>();
+    
+    public GameObject baseWaterball;
+    public float waterballSpeed;
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(baseWaterball);
         instance = this;
     }
 }

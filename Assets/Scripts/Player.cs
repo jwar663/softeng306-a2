@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
     private int selectedItemIndex;
     private Item selectedItem;
     
+    public float itemCooldownMin;
+    private float itemCooldown;
+    
     enum Direction {
         UP,
         DOWN,
@@ -159,7 +162,8 @@ public class Player : MonoBehaviour
                 }
                 
                 if (!interactedWithNPC) {
-                    if (selectedItem.name == "Water Bucket") {
+                    switch (selectedItem.name) {
+                    case "Water Bucket":
                         // if the player is facing a firetree that is on fire, extinguish it
                         foreach (FireTree fireTree in controller.fireTrees) {
                             Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
@@ -176,6 +180,12 @@ public class Player : MonoBehaviour
                                 }
                             }
                         }
+                        break;
+                    case "Water Gun":
+                        shootWaterball();
+                        break;
+                    default:
+                        break;
                     }
                 }
             }
@@ -244,5 +254,43 @@ public class Player : MonoBehaviour
     
     public void setCanMove(bool canMove) {
         this.canMove = canMove;
+    }
+    
+    public void shootWaterball() {
+        if (Time.time - itemCooldown < itemCooldownMin) {
+            return;
+        }
+        itemCooldown = Time.time;
+        
+        Vector2 force;
+        float projectileSpeed = GameManager.getInstance().waterballSpeed;
+
+        switch (facingDirection) {
+        case Direction.UP:
+            force = new Vector2(0f, projectileSpeed);
+            break;
+        case Direction.DOWN:
+            force = new Vector2(0f, -projectileSpeed);
+            break;
+        case Direction.LEFT:
+            force = new Vector2(-projectileSpeed, 0f);
+            break;
+        case Direction.RIGHT:
+            force = new Vector2(projectileSpeed, 0f);
+            break;
+        default:
+            force = new Vector2(0f, projectileSpeed);
+            break;
+        }
+        float angleDegrees = Mathf.Atan2(force.y, force.x) * Mathf.Rad2Deg;
+        
+        Vector3 projectilePosition = transform.position;
+        Quaternion projectileRotation = Quaternion.AngleAxis(angleDegrees, Vector3.forward);
+        
+        GameObject waterball = GameObject.Instantiate(GameManager.getInstance().baseWaterball, projectilePosition, projectileRotation) as GameObject;
+        
+        Waterball waterballScript = waterball.GetComponent<Waterball>();
+        waterballScript.isBase = false;
+        waterballScript.move(force);
     }
 }
