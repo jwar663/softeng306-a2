@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     private Item selectedItem;
     
     private float waterballCooldown;
+    private float bulletCooldown;
     
     enum Direction {
         UP,
@@ -214,6 +215,9 @@ public class Player : MonoBehaviour
                 case "Water Gun":
                     shootWaterball();
                     break;
+                case "Gun":
+                    shootBullet();
+                    break;
                 default:
                     break;
                 }
@@ -328,5 +332,43 @@ public class Player : MonoBehaviour
         Waterball waterballScript = waterball.GetComponent<Waterball>();
         waterballScript.isBase = false;
         waterballScript.move(force);
+    }
+    
+    public void shootBullet() {
+        if (Time.time - bulletCooldown < GameManager.getInstance().bulletCooldown) {
+            return;
+        }
+        bulletCooldown = Time.time;
+        
+        Vector2 force;
+        float projectileSpeed = GameManager.getInstance().bulletSpeed;
+
+        switch (facingDirection) {
+        case Direction.UP:
+            force = new Vector2(0f, projectileSpeed);
+            break;
+        case Direction.DOWN:
+            force = new Vector2(0f, -projectileSpeed);
+            break;
+        case Direction.LEFT:
+            force = new Vector2(-projectileSpeed, 0f);
+            break;
+        case Direction.RIGHT:
+            force = new Vector2(projectileSpeed, 0f);
+            break;
+        default:
+            force = new Vector2(0f, projectileSpeed);
+            break;
+        }
+        float angleDegrees = Mathf.Atan2(force.y, force.x) * Mathf.Rad2Deg;
+        
+        Vector3 projectilePosition = transform.position;
+        Quaternion projectileRotation = Quaternion.AngleAxis(angleDegrees, Vector3.forward);
+        
+        GameObject bullet = GameObject.Instantiate(GameManager.getInstance().baseBullet, projectilePosition, projectileRotation) as GameObject;
+        
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        bulletScript.isBase = false;
+        bulletScript.move(force);
     }
 }

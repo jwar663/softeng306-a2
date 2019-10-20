@@ -28,10 +28,15 @@ public class GameManager : MonoBehaviour
     public GameObject baseWaterball;
     public float waterballSpeed;
     public float waterballCooldown;
+    
+    public GameObject baseBullet;
+    public float bulletSpeed;
+    public float bulletCooldown;
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(baseWaterball);
+        DontDestroyOnLoad(baseBullet);
         instance = this;
     }
 }

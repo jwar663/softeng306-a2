@@ -33,7 +33,7 @@ public class Waterball : MonoBehaviour
     }
     
     public void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Waterball" || isBase) {
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Waterball"  || other.gameObject.tag == "Bullet" || isBase) {
             return;
         }
         
