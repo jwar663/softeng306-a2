@@ -217,6 +217,8 @@ public class Player : MonoBehaviour
                 changeItem(1);
             }
         }
+        
+        animator.SetBool("shielded", controller && selectedItem && selectedItem.name == "Shield" && (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Space)));
     }
     
     private void changeItem(int offset) {
