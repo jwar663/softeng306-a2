@@ -165,6 +165,7 @@ public class Player : MonoBehaviour
                                 if (canMove) {
                                     interactedWithNPC = true;
                                     npc.talkTo();
+                                    break;
                                 }
                             }
                         }
@@ -269,6 +270,10 @@ public class Player : MonoBehaviour
         Item next = GameManager.getInstance().items[getItemIndex(1)];
         
         FindObjectOfType<ItemManager>().setItems(previous, selectedItem, next);
+    }
+    
+    public Item getSelectedItem() {
+        return selectedItem;
     }
     
     public void reduceHP(int x) {
