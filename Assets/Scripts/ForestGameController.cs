@@ -13,9 +13,8 @@ public class ForestGameController : NPCBehaviour
     public Transform smallFire;
     public Camera camera;
     private bool isCompleted = true;
-    public int score = 0;
+    public int score;
     public Text scoreText;
-    
     private Player player;
     public List<FireTree> fireTrees;
     public List<NPC> npcs;
@@ -47,14 +46,14 @@ public class ForestGameController : NPCBehaviour
         player = FindObjectOfType<Player>();
         fireTrees = new List<FireTree>(FindObjectsOfType<FireTree>());
         npcs = new List<NPC>(FindObjectsOfType<NPC>());
-        
+        this.score = 4;
         StartCoroutine("Run");
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = score.ToString();
+        scoreText.text = "Fires Remaining: " + score.ToString();
         GameManager.getInstance().score = score;
         GameManager.getInstance().time = Time.timeSinceLevelLoad;
         

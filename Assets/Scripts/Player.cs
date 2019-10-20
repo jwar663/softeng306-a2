@@ -183,7 +183,7 @@ public class Player : MonoBehaviour
                                         controller.fireTreesExtinguished++;
                                         FindObjectOfType<AudioManager>().Play("PutOut");
                                         Invoke("resetActingAnimationState", 0.5f);
-                                        controller.score += 500;
+                                        controller.score -= 1;
                                         selectedItem.useOtherSprite = true;
                                         updateItemView();
                                     }
