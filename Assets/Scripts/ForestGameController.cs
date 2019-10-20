@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ForestGameController : NPCBehaviour
+public class ForestGameController : NPCBehaviour, LevelController
 {
     public NPC npc;
     private bool notRun = true;
@@ -16,8 +16,8 @@ public class ForestGameController : NPCBehaviour
     public int score;
     public Text scoreText;
     private Player player;
-    public List<FireTree> fireTrees;
     public List<NPC> npcs;
+    public List<FireTree> fireTrees;
     
     // total number of fire trees
     public int totalFireTrees;

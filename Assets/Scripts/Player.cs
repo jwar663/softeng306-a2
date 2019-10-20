@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,7 @@ public class Player : MonoBehaviour
     private bool alive;
     private bool canMove;
     private bool shielded;
-    private ForestGameController controller;
+    private LevelController controller;
     
     private Rigidbody2D myRigidbody;
     // how much the player's position should change
@@ -47,9 +48,12 @@ public class Player : MonoBehaviour
         selectedItemIndex = 0;
         selectedItem = GameManager.getInstance().items[selectedItemIndex];
         
-        controller = FindObjectOfType<ForestGameController>();
+        // find controller
+        IEnumerator enumerator = FindObjectsOfType<MonoBehaviour>().OfType<LevelController>().GetEnumerator();
+        enumerator.MoveNext();
+        controller = enumerator.Current as LevelController;
         
-        if (controller) {
+        if (controller != null) {
             updateItemView();
         }
     }
@@ -144,63 +148,67 @@ public class Player : MonoBehaviour
             
             bool interactedWithNPC = false;
             
-            if (controller) {
-                // if the player is facing an npc, interact with it
-                foreach (NPC npc in controller.npcs) {
-                    if (npc == null) {
-                        continue;
-                    }
-                    
-                    Vector2 npcPosition = new Vector2(npc.gameObject.transform.position.x, npc.gameObject.transform.position.y);
-                    if (npcPosition.x - delta < targetPosition.x && npcPosition.x + delta > targetPosition.x) {
-                        if (npcPosition.y - delta < targetPosition.y && npcPosition.y + delta > targetPosition.y) {
-                            if (canMove) {
-                                interactedWithNPC = true;
-                                npc.talkTo();
-                            }
+            if (controller != null) {
+                // forest interactions
+                ForestGameController forest = controller as ForestGameController;
+                if (forest) {
+                    // if the player is facing an npc, interact with it
+                    foreach (NPC npc in forest.npcs) {
+                        if (npc == null) {
+                            continue;
                         }
-                    }
-                }
-                
-                if (!interactedWithNPC) {
-                    switch (selectedItem.name) {
-                    case "Water Bucket":
-                        if (selectedItem.useOtherSprite) { // bucket is empty
-                            GameObject fountain = GameObject.FindWithTag("Fountain");
-                            float distance = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(fountain.transform.position.x - transform.position.x), 2.0f) + Mathf.Pow(Mathf.Abs(fountain.transform.position.y - transform.position.y), 2.0f));
-                            if (distance <= 2.0f) {
-                                selectedItem.useOtherSprite = false;
-                                updateItemView();
-                            }
-                            break;
-                        }
-                        // if the player is facing a firetree that is on fire, extinguish it
-                        foreach (FireTree fireTree in controller.fireTrees) {
-                            Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
-                            if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
-                                if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
-                                    if (fireTree.isOnFire()) {
-                                        animator.SetBool("acting", true);
-                                        fireTree.putOut();
-                                        controller.fireTreesExtinguished++;
-                                        FindObjectOfType<AudioManager>().Play("PutOut");
-                                        Invoke("resetActingAnimationState", 0.5f);
-                                        controller.score -= 1;
-                                        selectedItem.useOtherSprite = true;
-                                        updateItemView();
-                                    }
+                        
+                        Vector2 npcPosition = new Vector2(npc.gameObject.transform.position.x, npc.gameObject.transform.position.y);
+                        if (npcPosition.x - delta < targetPosition.x && npcPosition.x + delta > targetPosition.x) {
+                            if (npcPosition.y - delta < targetPosition.y && npcPosition.y + delta > targetPosition.y) {
+                                if (canMove) {
+                                    interactedWithNPC = true;
+                                    npc.talkTo();
                                 }
                             }
                         }
+                    }
+                
+                    if (!interactedWithNPC) {
+                        switch (selectedItem.name) {
+                        case "Water Bucket":
+                            if (selectedItem.useOtherSprite) { // bucket is empty
+                                GameObject fountain = GameObject.FindWithTag("Fountain");
+                                float distance = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(fountain.transform.position.x - transform.position.x), 2.0f) + Mathf.Pow(Mathf.Abs(fountain.transform.position.y - transform.position.y), 2.0f));
+                                if (distance <= 2.0f) {
+                                    selectedItem.useOtherSprite = false;
+                                    updateItemView();
+                                }
+                                break;
+                            }
+                            // if the player is facing a firetree that is on fire, extinguish it
+                            foreach (FireTree fireTree in forest.fireTrees) {
+                                Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
+                                if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
+                                    if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
+                                        if (fireTree.isOnFire()) {
+                                            animator.SetBool("acting", true);
+                                            fireTree.putOut();
+                                            forest.fireTreesExtinguished++;
+                                            FindObjectOfType<AudioManager>().Play("PutOut");
+                                            Invoke("resetActingAnimationState", 0.5f);
+                                            forest.score -= 1;
+                                            selectedItem.useOtherSprite = true;
+                                            updateItemView();
+                                        }
+                                    }
+                                }
+                            }
                         break;
-                    default:
-                        break;
+                        default:
+                            break;
+                        }
                     }
                 }
             }
         }
         
-        if (controller) {
+        if (controller != null) {
             if (Input.GetKey(KeyCode.X)) {
                 switch (selectedItem.name) {
                 case "Water Gun":
@@ -212,7 +220,7 @@ public class Player : MonoBehaviour
             }
         }
         
-        if (controller) {
+        if (controller != null) {
             if (Input.GetKeyDown(KeyCode.Q)) {
                 changeItem(-1);
             } else if (Input.GetKeyDown(KeyCode.E)) {
@@ -220,7 +228,7 @@ public class Player : MonoBehaviour
             }
         }
         
-        shielded = controller && selectedItem && selectedItem.name == "Shield" && (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Space));
+        shielded = controller != null && selectedItem && selectedItem.name == "Shield" && (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Space));
         animator.SetBool("shielded", shielded);
     }
     
