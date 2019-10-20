@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private bool onFire;
     private bool alive;
     private bool canMove;
+    private bool shielded;
     private ForestGameController controller;
     
     private Rigidbody2D myRigidbody;
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
         onFire = false;
         alive = true;
         canMove = true;
+        shielded = false;
         selectedItemIndex = 0;
         selectedItem = GameManager.getInstance().items[selectedItemIndex];
         
@@ -218,7 +220,12 @@ public class Player : MonoBehaviour
             }
         }
         
-        animator.SetBool("shielded", controller && selectedItem && selectedItem.name == "Shield" && (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Space)));
+        shielded = controller && selectedItem && selectedItem.name == "Shield" && (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Space));
+        animator.SetBool("shielded", shielded);
+    }
+    
+    public bool isShielded() {
+        return shielded;
     }
     
     private void changeItem(int offset) {
