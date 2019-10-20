@@ -171,8 +171,7 @@ public class Player : MonoBehaviour
                     }
                 
                     if (!interactedWithNPC) {
-                        switch (selectedItem.name) {
-                        case "Water Bucket":
+                        if (selectedItem.name == "Water Bucket") {
                             if (selectedItem.useOtherSprite) { // bucket is empty
                                 GameObject fountain = GameObject.FindWithTag("Fountain");
                                 float distance = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(fountain.transform.position.x - transform.position.x), 2.0f) + Mathf.Pow(Mathf.Abs(fountain.transform.position.y - transform.position.y), 2.0f));
@@ -180,29 +179,34 @@ public class Player : MonoBehaviour
                                     selectedItem.useOtherSprite = false;
                                     updateItemView();
                                 }
-                                break;
                             }
-                            // if the player is facing a firetree that is on fire, extinguish it
-                            foreach (FireTree fireTree in forest.fireTrees) {
-                                Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
-                                if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
-                                    if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
-                                        if (fireTree.isOnFire()) {
-                                            animator.SetBool("acting", true);
-                                            fireTree.putOut();
-                                            forest.fireTreesExtinguished++;
-                                            FindObjectOfType<AudioManager>().Play("PutOut");
-                                            Invoke("resetActingAnimationState", 0.5f);
-                                            forest.score -= 1;
-                                            selectedItem.useOtherSprite = true;
-                                            updateItemView();
+                        }
+                        
+                        // if the player is facing a firetree that is on fire, extinguish it
+                        foreach (FireTree fireTree in forest.fireTrees) {
+                            Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
+                            if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
+                                if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
+                                    if (fireTree.isOnFire()) {
+                                        if (selectedItem.name == "Water Bucket" ){
+                                            if (selectedItem.useOtherSprite) {
+                                                FindObjectOfType<ToastMessage>().show("Your bucket is empty!");
+                                            } else {
+                                                animator.SetBool("acting", true);
+                                                fireTree.putOut();
+                                                forest.fireTreesExtinguished++;
+                                                FindObjectOfType<AudioManager>().Play("PutOut");
+                                                Invoke("resetActingAnimationState", 0.5f);
+                                                forest.score -= 1;
+                                                selectedItem.useOtherSprite = true;
+                                                updateItemView();
+                                            }
+                                        } else {
+                                            FindObjectOfType<ToastMessage>().show("That won't put out the fire.");
                                         }
                                     }
                                 }
                             }
-                        break;
-                        default:
-                            break;
                         }
                     }
                 }
