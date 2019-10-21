@@ -20,7 +20,7 @@ public class ScoreScreenController : MonoBehaviour
         Debug.Log("Starting the game");
         Debug.Log(GameManager.getInstance().score.ToString());
         score.text = GameManager.getInstance().score.ToString();
-        int bonus = (int)(2000 - (GameManager.getInstance().time / 50.0f * 2000));
+        int bonus = (int)((2000 - (GameManager.getInstance().time))/200);
         if (bonus < 0)
         {
             bonus = 0;
@@ -43,8 +43,6 @@ public class ScoreScreenController : MonoBehaviour
         }
         GameManager.getInstance().setScore(GameManager.getInstance().score, theName);
     }
-
-    public void disableClick() { gameObject.GetComponent<Button>().interactable = false; }
 
     // Update is called once per frame
     void Update()

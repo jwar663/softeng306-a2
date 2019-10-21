@@ -66,7 +66,7 @@ public class ForestGameController : NPCBehaviour, LevelController
     void Update()
     {
         scoreText.text = "Fires Remaining: " + score.ToString();
-        GameManager.getInstance().score = score;
+        GameManager.getInstance().score = 9-score;
         GameManager.getInstance().time = Time.timeSinceLevelLoad;
         
         if (Input.GetKeyDown(KeyCode.M)) {
