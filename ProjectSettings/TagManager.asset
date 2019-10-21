@@ -11,6 +11,9 @@ TagManager:
   - Bullet
   - BodyguardEnemy
   - EnemyBullet
+  - Oil Field
+  - Duck
+  - Water Tornado
   layers:
   - Default
   - TransparentFX
