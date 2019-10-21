@@ -17344,6 +17344,13 @@ MonoBehaviour:
     loop: 0
     spatialBlend: 1
     source: {fileID: 0}
+  - name: CollectItem
+    clip: {fileID: 8300000, guid: d89fc6ecb62cfe145871c1fcee71296e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
 --- !u!4 &1811694916
 Transform:
   m_ObjectHideFlags: 0
