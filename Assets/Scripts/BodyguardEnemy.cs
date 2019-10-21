@@ -79,6 +79,7 @@ public class BodyguardEnemy: MonoBehaviour
         hp -= 1;
         
         if (hp == 0) {
+            FindObjectOfType<ParisGameController>().enemiesKilled++;
             Destroy(gameObject);
         }
     }

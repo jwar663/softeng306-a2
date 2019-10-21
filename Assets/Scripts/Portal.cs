@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
+    public int levelID;
+    
     // Start is called before the first frame update
     void Start()
     { 
@@ -18,7 +20,17 @@ public class Portal : MonoBehaviour
     }
     
     void OnTriggerEnter2D(Collider2D other) {
-        // TODO set some variables in Game so we know the player has completed the level
+        if (other.gameObject.tag != "Player") {
+            return;
+        }
+        
+        int levelsCompleted = GameManager.getInstance().levelsCompleted;
+        
+        if (levelID > levelsCompleted) {
+            GameManager.getInstance().levelsCompleted = levelID;
+            GameManager.getInstance().watchedCutscene = false;
+        }
+        
         SceneManager.LoadScene("EndGame");
     }
 }
