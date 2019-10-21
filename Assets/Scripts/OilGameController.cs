@@ -57,7 +57,7 @@ public class OilGameController : NPCBehaviour
             allCutsceneDone = true;
             FindObjectOfType<DialogueManager>().EndDialogue();
             camera.GetComponent<CameraMovement>().enabled = true;
-            //player.setCanMove(true);
+            player.setCanMove(true);
         }
     }
 
