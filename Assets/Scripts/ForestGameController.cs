@@ -46,7 +46,7 @@ public class ForestGameController : NPCBehaviour, LevelController
         player = FindObjectOfType<Player>();
         fireTrees = new List<FireTree>(FindObjectsOfType<FireTree>());
         npcs = new List<NPC>(FindObjectsOfType<NPC>());
-        this.score = 4;
+        this.score = 9;
         StartCoroutine("Run");
     }
 
