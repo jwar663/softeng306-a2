@@ -8,7 +8,7 @@ Serious game project themed around climate change.
 
 | Action | Key |
 | ---- | ---- |
-| Move | Arrow keys |
+| Move | Arrow keys, WASD |
 | Interact | Space, X |
 | Use item | Space, X |
 | Run | Shift |
