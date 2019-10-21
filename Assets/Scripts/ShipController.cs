@@ -142,16 +142,22 @@ public class ShipController : MonoBehaviour
         {
             if (collision.gameObject.tag.Equals("Oil Field"))
             {
+                FindObjectOfType<AudioManager>().Play("SuckOil");
                 collision.gameObject.transform.localScale -= new Vector3(suctionSpeed, suctionSpeed, suctionSpeed) * Time.deltaTime;
                 Debug.Log("On Oil field");
                 if (collision.gameObject.transform.localScale.x < 0.01f)
                 {
                     Destroy(collision.gameObject);
+                    //only stops sound when object is destroyed, couldn't figure out how to make it stop when you stop.
+                    //maybe we could implement that when you start sucking oil, it doesnt stop until all of the oil is gone.
+                    FindObjectOfType<AudioManager>().Stop("SuckOil");
                 }
+               
             }
             if (collision.gameObject.tag.Equals("Duck"))
             {
                 Destroy(collision.gameObject);
+                FindObjectOfType<AudioManager>().Play("DuckSound");
             }
         }
     }
