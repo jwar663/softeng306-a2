@@ -8,7 +8,7 @@ Serious game project themed around climate change.
 
 | Action | Key |
 | ---- | ---- |
-| Move | Arrow keys |
+| Move | Arrow keys, WASD |
 | Interact | Space, X |
 | Use item | Space, X |
 | Run | Shift |
@@ -16,6 +16,7 @@ Serious game project themed around climate change.
 | Next item | E |
 | Skip cutscene | M |
 | Unlock all levels | N (from the main menu only) |
+| Deal extra damage | B (from the main menu only) |
 
 ---
 

@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public float enemyBulletSpeed;
     
     public bool cheatUnlockPortals = false;
+    public bool cheatExtraDamage = false;
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);

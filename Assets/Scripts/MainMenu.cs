@@ -28,5 +28,9 @@ public class MainMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N)) {
             GameManager.getInstance().cheatUnlockPortals = true;
         }
+        
+        if (Input.GetKeyDown(KeyCode.B)) {
+            GameManager.getInstance().cheatExtraDamage = true;
+        }
     }
 }
