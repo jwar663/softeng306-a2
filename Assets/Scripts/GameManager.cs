@@ -11,18 +11,24 @@ public class GameManager : MonoBehaviour
         if (instance == null) {
             instance = GameObject.FindObjectOfType<GameManager>();
         }
-        
+
         return instance;
     }
-    
+
     // for pre-level splash scene
     public int levelID = -1; // number of the currently selected level
     public string levelName; // name of the currently selected level
     public string sceneName; // name of the currently selected scene
-    
+
     public int score = 0;
     public float time = 0;
-    
+    public SortedDictionary<int, string> highScores = new SortedDictionary<int, string>() { { 0, "Jogn" },{ 2, "icar" } }; //Dictionary of scores sorted from lowest to highest score.
+
+    public void setScore(int score, string name)
+    {
+        highScores.Add(score, name);
+    }
+
     // for the level select scene
     public int levelsCompleted = 0;
     public bool watchedCutscene = false; // this is necessary so the player doesn't have to watch the same cutscene twice if they quit the level
