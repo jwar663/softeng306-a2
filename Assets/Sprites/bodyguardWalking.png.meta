@@ -1,15 +1,23 @@
 fileFormatVersion: 2
-guid: e6ef0447c40271f4c9861dd0aef7c0c3
+guid: 7f74064ad838f1d47b0ce066fa35f6d7
 TextureImporter:
   fileIDToRecycleName:
-    21300000: npc_0
-    21300002: npc_1
-    21300004: npc_2
-    21300006: npc_3
-    21300008: npc_4
-    21300010: npc_5
-    21300012: npc_6
-    21300014: npc_7
+    21300000: bodyguardWalking_0
+    21300002: bodyguardWalking_1
+    21300004: bodyguardWalking_2
+    21300006: bodyguardWalking_3
+    21300008: bodyguardWalking_4
+    21300010: bodyguardWalking_5
+    21300012: bodyguardWalking_6
+    21300014: bodyguardWalking_7
+    21300016: bodyguardWalking_8
+    21300018: bodyguardWalking_9
+    21300020: bodyguardWalking_10
+    21300022: bodyguardWalking_11
+    21300024: bodyguardWalking_12
+    21300026: bodyguardWalking_13
+    21300028: bodyguardWalking_14
+    21300030: bodyguardWalking_15
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -92,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: npc_0
+      name: bodyguardWalking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -106,13 +114,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89239ec64b4961d44b708db1db5e56df
+      spriteID: a7b393c279358494f897bf9ad89c2b5f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_1
+      name: bodyguardWalking_1
       rect:
         serializedVersion: 2
         x: 16
@@ -126,13 +134,53 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 689644317cb554142b7bc9c513373aa6
+      spriteID: 214bf15914e4fda4b90c013507f760a1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_2
+      name: bodyguardWalking_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db2c2707abf5d074492cc586a90ae87b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bodyguardWalking_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 871ff97fdc5a5a944b77d5c0c2d8962a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bodyguardWalking_4
       rect:
         serializedVersion: 2
         x: 0
@@ -146,13 +194,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: baf8566ad33b8564ebf3b21658d53810
+      spriteID: 017f97b8095b2e44c80272a1e5b7611a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_3
+      name: bodyguardWalking_5
       rect:
         serializedVersion: 2
         x: 16
@@ -166,13 +214,53 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c1b3bdaae2638a4e8a4158026eaab41
+      spriteID: c583e8c35ca80b44b891bb09d1018082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_4
+      name: bodyguardWalking_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f2d08cfa5f0c314784fb8e21a0cf4f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bodyguardWalking_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5fb90389fe89cd43b932359a98bd760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bodyguardWalking_8
       rect:
         serializedVersion: 2
         x: 0
@@ -186,13 +274,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29d13439722444a4e8d2916117a91757
+      spriteID: 65297c964c34c354dbcbdd4019ddcb81
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_5
+      name: bodyguardWalking_9
       rect:
         serializedVersion: 2
         x: 16
@@ -206,13 +294,53 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90eb5e3ad9f024344b2cc9a46f5c1101
+      spriteID: 1cc7921d44c9aff45a93578fc251c001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_6
+      name: bodyguardWalking_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37664e86bb1612c4eaa83678aa9cfb37
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bodyguardWalking_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28759495859eb2a488a1a70efd93072e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bodyguardWalking_12
       rect:
         serializedVersion: 2
         x: 0
@@ -226,13 +354,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70626ba867572ad4e8f1970ff76c7c08
+      spriteID: 55db60a61b0609141906771d1cb764c8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc_7
+      name: bodyguardWalking_13
       rect:
         serializedVersion: 2
         x: 16
@@ -246,7 +374,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77e2714039b523e4a983a90440748f71
+      spriteID: f6267600ecee0f04ab9a9b4aba51d177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bodyguardWalking_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c49e2347ea30714fa775904b45239ad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bodyguardWalking_15
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87ab742ea2c661a40baf2933b5aa40f1
       vertices: []
       indices: 
       edges: []
@@ -254,7 +422,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 373c576a1514390418be350dd652c525
+    spriteID: 4bbd07f7766bd944f94d169839083c3c
     vertices: []
     indices: 
     edges: []
