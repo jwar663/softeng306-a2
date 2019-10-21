@@ -13,9 +13,13 @@ public class SceneTransition : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        GameManager.getInstance().levelName = levelName;
-        GameManager.getInstance().sceneName = sceneName;
-        GameManager.getInstance().levelID = levelID;
-        SceneManager.LoadScene("LevelStartTransitionScene");
+        if (GameManager.getInstance().cheatUnlockPortals || levelID <= GameManager.getInstance().levelsCompleted + 1) {
+            GameManager.getInstance().levelName = levelName;
+            GameManager.getInstance().sceneName = sceneName;
+            GameManager.getInstance().levelID = levelID;
+            SceneManager.LoadScene("LevelStartTransitionScene");
+        } else {
+            FindObjectOfType<ToastMessage>().show("That portal is not open yet.");
+        }
     }
 }

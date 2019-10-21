@@ -111,13 +111,13 @@ public class Player : MonoBehaviour
     void updateKeyboard() {
         // update the direction the player is facing
         // this doesn't actually change how they're rendered, but we need this information later
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
             facingDirection = Direction.UP;
-        } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+        } else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
             facingDirection = Direction.DOWN;
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+        } else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.D)) {
             facingDirection = Direction.LEFT;
-        } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+        } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A)) {
             facingDirection = Direction.RIGHT;
         }
         
