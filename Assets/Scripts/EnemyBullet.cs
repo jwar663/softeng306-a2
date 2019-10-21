@@ -46,6 +46,7 @@ public class EnemyBullet : MonoBehaviour
         Player player = other.gameObject.GetComponent<Player>();
         if (player != null && !player.isShielded()) {
             player.reduceHP(20);
+            FindObjectOfType<AudioManager>().Play("Pain");
         }
         
         Destroy(gameObject);

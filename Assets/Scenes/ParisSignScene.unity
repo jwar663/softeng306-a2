@@ -75391,6 +75391,13 @@ MonoBehaviour:
     loop: 0
     spatialBlend: 0
     source: {fileID: 0}
+  - name: Pain
+    clip: {fileID: 8300000, guid: da8e8207d19525043ab49d0f44fd8862, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
 --- !u!4 &1818384044
 Transform:
   m_ObjectHideFlags: 0
