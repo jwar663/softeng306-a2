@@ -34,6 +34,10 @@ public class ForestGameController : NPCBehaviour, LevelController
     public override void interact(NPC npc)
     {
     }
+    
+    public List<NPC> getNPCs() {
+        return npcs;
+    }
 
     // Start is called before the first frame update
     void Start()
