@@ -150,27 +150,26 @@ public class Player : MonoBehaviour
             bool interactedWithNPC = false;
             
             if (controller != null) {
-                // forest interactions
-                ForestGameController forest = controller as ForestGameController;
-                if (forest) {
-                    // if the player is facing an npc, interact with it
-                    foreach (NPC npc in forest.npcs) {
-                        if (npc == null) {
-                            continue;
-                        }
-                        
-                        Vector2 npcPosition = new Vector2(npc.gameObject.transform.position.x, npc.gameObject.transform.position.y);
-                        if (npcPosition.x - delta < targetPosition.x && npcPosition.x + delta > targetPosition.x) {
-                            if (npcPosition.y - delta < targetPosition.y && npcPosition.y + delta > targetPosition.y) {
-                                if (canMove) {
-                                    interactedWithNPC = true;
-                                    npc.talkTo();
-                                    break;
-                                }
+                // if the player is facing an npc, interact with it
+                foreach (NPC npc in controller.getNPCs()) {
+                    if (npc == null) {
+                        continue;
+                    }
+                    
+                    Vector2 npcPosition = new Vector2(npc.gameObject.transform.position.x, npc.gameObject.transform.position.y);
+                    if (npcPosition.x - delta < targetPosition.x && npcPosition.x + delta > targetPosition.x) {
+                        if (npcPosition.y - delta < targetPosition.y && npcPosition.y + delta > targetPosition.y) {
+                            if (canMove) {
+                                interactedWithNPC = true;
+                                npc.talkTo();
+                                break;
                             }
                         }
                     }
+                }
                 
+                ForestGameController forest = controller as ForestGameController;
+                if (forest) {
                     if (!interactedWithNPC) {
                         if (selectedItem.name == "Water Bucket") {
                             if (selectedItem.useOtherSprite) { // bucket is empty
@@ -269,7 +268,9 @@ public class Player : MonoBehaviour
         Item previous = GameManager.getInstance().items[getItemIndex(-1)];
         Item next = GameManager.getInstance().items[getItemIndex(1)];
         
-        FindObjectOfType<ItemManager>().setItems(previous, selectedItem, next);
+        if (FindObjectOfType<ItemManager>() != null) {
+            FindObjectOfType<ItemManager>().setItems(previous, selectedItem, next);
+        }
     }
     
     public Item getSelectedItem() {

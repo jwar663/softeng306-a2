@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public float time = 0;
     
+    // for the level select scene
+    public int levelsCompleted = 0;
+    public bool watchedCutscene = false; // this is necessary so the player doesn't have to watch the same cutscene twice if they quit the level
+    
     public List<Item> items = new List<Item>();
     
     public GameObject baseWaterball;
