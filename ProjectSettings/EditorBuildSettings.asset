@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ParisSignScene.unity
     guid: f42cb570d20b9c34ba83735ed5b1ea54
+  - enabled: 1
+    path: Assets/Scenes/OilScene.unity
+    guid: e6674843f8d87d94a86f4aa12a31221d
   m_configObjects: {}
