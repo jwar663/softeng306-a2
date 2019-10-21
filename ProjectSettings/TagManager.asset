@@ -52,3 +52,6 @@ TagManager:
   - name: Player
     uniqueID: 161350129
     locked: 0
+  - name: ObjectsHighup
+    uniqueID: 108635079
+    locked: 0
