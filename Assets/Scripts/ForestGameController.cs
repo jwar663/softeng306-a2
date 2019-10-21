@@ -13,6 +13,7 @@ public class ForestGameController : NPCBehaviour, LevelController
     public Transform smallFire;
     public Camera camera;
     private bool isCompleted = true;
+    private bool allCutsceneDone = false;
     public int score;
     public Text scoreText;
     private Player player;
@@ -29,6 +30,13 @@ public class ForestGameController : NPCBehaviour, LevelController
     public override void dialogueCompleted()
     {
         isCompleted = true;
+        
+        if (allCutsceneDone) {
+            GameManager.getInstance().items[1].unlocked = true;
+            FindObjectOfType<ToastMessage>().show("Received item: Water Gun");
+            
+            FindObjectOfType<Player>().updateItemView();
+        }
     }
 
     public override void interact(NPC npc)
@@ -63,6 +71,7 @@ public class ForestGameController : NPCBehaviour, LevelController
         
         if (Input.GetKeyDown(KeyCode.M)) {
             StopCoroutine("Run");
+            allCutsceneDone = true;
             FindObjectOfType<DialogueManager>().EndDialogue();
             camera.GetComponent<CameraMovement>().enabled = true;
         }
@@ -164,9 +173,10 @@ public class ForestGameController : NPCBehaviour, LevelController
         }
 
         camera.GetComponent<CameraMovement>().enabled = true;
+        allCutsceneDone = true;
         dialogue = new List<string>();
         dialogue.Add("Please hurry, the future of our Rainforests depend on you.");
+        dialogue.Add("Oh, and you'll need this.");
         FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
-
     }
 }

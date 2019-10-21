@@ -37,6 +37,10 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        if (inDialogue) {
+            return;
+        }
+        
         inDialogue = true;
         isOnInteraction = dialogue.isOnInteraction;
         
