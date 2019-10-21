@@ -84,6 +84,10 @@ public class ForestGameController : NPCBehaviour, LevelController
         dialogue.Add("Rainforests play a huge role in regulating the worlds CO2 levels.");
         dialogue.Add("Each year we humans set them on fire to make way for agriculatural land.");
         dialogue.Add("If you don't put a stop to this, we wont have any rainforests left.");
+        dialogue.Add("The lives and homes of millions of animals will all perish.");
+        dialogue.Add("Unfortunately, even after the fire, the effects will be felt all over the world.");
+        dialogue.Add("Mass amounts of CO2 will be released into the atmosphere, and there will be no forest left to regulate these CO2 levels.");
+
         FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
@@ -133,6 +137,7 @@ public class ForestGameController : NPCBehaviour, LevelController
         dialogue = new List<string>();
         dialogue.Add("You must put out the burning trees to weaken the fire monster.");
         dialogue.Add("If you put out enough fires, he will be too weak to continue burning and go out.");
+        dialogue.Add("You can interact with the environment by pressing either X and SPACE when you're next to the object.");
         FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
@@ -149,6 +154,7 @@ public class ForestGameController : NPCBehaviour, LevelController
         }
         dialogue = new List<string>();
         dialogue.Add("Try and avoid these smaller fire monsters, they will hurt you.");
+        dialogue.Add("Move around by pressing WASD or the arrow keys!");
         FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
@@ -158,5 +164,9 @@ public class ForestGameController : NPCBehaviour, LevelController
         }
 
         camera.GetComponent<CameraMovement>().enabled = true;
+        dialogue = new List<string>();
+        dialogue.Add("Please hurry, the future of our Rainforests depend on you.");
+        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
+
     }
 }
