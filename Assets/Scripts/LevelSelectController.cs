@@ -24,6 +24,7 @@ public class LevelSelectController : MonoBehaviour, LevelController {
                 getScientist(2).showOnStage();
                 break;
             case 2:
+                getScientist(3).showOnStage();
                 break;
             case 3:
                 // maybe, or just end the game here
