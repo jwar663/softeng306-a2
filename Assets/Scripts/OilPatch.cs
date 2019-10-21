@@ -25,8 +25,10 @@ public class OilPatch : MonoBehaviour
     {
         for(int i = 20; i>0; i--)
         {
+            FindObjectOfType<AudioManager>().Play("SuckOil");
             transform.localScale = new Vector3(0.050f*i, 0.050f * i, 0.050f * i);
             yield return new WaitForSeconds(0.05f);
+            FindObjectOfType<AudioManager>().Stop("SuckOil");
         }
         Destroy(gameObject);
     }
