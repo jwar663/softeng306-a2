@@ -37,6 +37,8 @@ Serious game project themed around climate change.
 
 Open the project using Unity 2018.4.10f1. Create a folder "Build" in the project directory. File > Build and Run the project, and select the Build directory. The executable will be located at Build/Rpg2DTopDown.exe.
 
+You can also play a version of the game by navigating to https://mandowngame.azurewebsites.net/
+
 A build has been provided with the [Prototype](https://github.com/veratrum/softeng306-a2/releases/tag/v0.1-prototype) release.
 
 ---
