@@ -8,9 +8,6 @@ TagManager:
   - FireEnemy
   - Fireball
   - Fountain
-  - Oil Field
-  - Duck
-  - Water Tornado
   layers:
   - Default
   - TransparentFX
