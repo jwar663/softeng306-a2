@@ -2,6 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface LevelController {
-    
+interface LevelController {
+    List<NPC> getNPCs();
 }
