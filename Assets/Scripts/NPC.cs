@@ -23,6 +23,7 @@ public class NPC : MonoBehaviour
     {
         
     }
+
     
     public void talkTo() {
         if (behaviour != null) {

@@ -106,9 +106,9 @@ public class ForestGameController : NPCBehaviour, LevelController
         }
         player.setCanMove(false);
 
-        for (int i = 0; i<200; i++)
+        for (int i = 0; i < 200; i++)
         {
-            moveCamera(camera.transform.position, portal.position, camera);
+            moveCamera(camera.transform.position, portal.transform.position, camera);
             yield return null;
         }
         dialogue = new List<string>();

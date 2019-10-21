@@ -72,6 +72,39 @@ public class ShipController : MonoBehaviour
         {
             reduceHP(1);
         }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            transform.eulerAngles = new Vector3(
+            transform.eulerAngles.x,
+            transform.eulerAngles.y,
+            90
+        );
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            transform.eulerAngles = new Vector3(
+            transform.eulerAngles.x,
+            transform.eulerAngles.y,
+            270
+        );
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            transform.eulerAngles = new Vector3(
+            transform.eulerAngles.x,
+            transform.eulerAngles.y,
+            180
+        );
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            transform.eulerAngles = new Vector3(
+            transform.eulerAngles.x,
+            transform.eulerAngles.y,
+            0
+        );
+        }
     }
 
     void updateAnimationAndMove()
@@ -145,14 +178,14 @@ public class ShipController : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("SuckOil");
                 collision.gameObject.transform.localScale -= new Vector3(suctionSpeed, suctionSpeed, suctionSpeed) * Time.deltaTime;
                 Debug.Log("On Oil field");
-                if (collision.gameObject.transform.localScale.x < 0.01f)
+                if (collision.gameObject.transform.localScale.x < 0.1f)
                 {
                     Destroy(collision.gameObject);
                     //only stops sound when object is destroyed, couldn't figure out how to make it stop when you stop.
                     //maybe we could implement that when you start sucking oil, it doesnt stop until all of the oil is gone.
                     FindObjectOfType<AudioManager>().Stop("SuckOil");
                 }
-               
+
             }
             if (collision.gameObject.tag.Equals("Duck"))
             {
