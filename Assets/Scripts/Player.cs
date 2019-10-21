@@ -264,7 +264,7 @@ public class Player : MonoBehaviour
         return index;
     }
     
-    private void updateItemView() {
+    public void updateItemView() {
         Item previous = GameManager.getInstance().items[getItemIndex(-1)];
         Item next = GameManager.getInstance().items[getItemIndex(1)];
         
