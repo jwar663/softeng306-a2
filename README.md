@@ -16,6 +16,7 @@ Serious game project themed around climate change.
 | Next item | E |
 | Skip cutscene | M |
 | Unlock all levels | N (from the main menu only) |
+| Extra damage | B (from the main menu only) |
 
 ---
 

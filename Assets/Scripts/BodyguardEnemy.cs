@@ -78,7 +78,7 @@ public class BodyguardEnemy: MonoBehaviour
     public void kill() {
         hp -= 1;
         
-        if (hp == 0) {
+        if (hp == 0 || GameManager.getInstance().cheatExtraDamage) {
             FindObjectOfType<ParisGameController>().enemiesKilled++;
             Destroy(gameObject);
         }
