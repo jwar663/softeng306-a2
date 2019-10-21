@@ -213,7 +213,7 @@ public class Player : MonoBehaviour
             }
         }
         
-        if (controller != null) {
+        if (controller != null && selectedItem != null) {
             if (Input.GetKey(KeyCode.X)) {
                 switch (selectedItem.name) {
                 case "Water Gun":
@@ -228,7 +228,7 @@ public class Player : MonoBehaviour
             }
         }
         
-        if (controller != null) {
+        if (controller != null && selectedItem != null) {
             if (Input.GetKeyDown(KeyCode.Q)) {
                 changeItem(-1);
             } else if (Input.GetKeyDown(KeyCode.E)) {
@@ -236,7 +236,7 @@ public class Player : MonoBehaviour
             }
         }
         
-        shielded = controller != null && selectedItem && selectedItem.name == "Shield" && (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Space));
+        shielded = controller != null && selectedItem != null && selectedItem.name == "Shield" && (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Space));
         animator.SetBool("shielded", shielded);
     }
     
@@ -246,12 +246,25 @@ public class Player : MonoBehaviour
     
     private void changeItem(int offset) {
         selectedItemIndex = getItemIndex(offset);
-        selectedItem = GameManager.getInstance().items[selectedItemIndex];
         
-        updateItemView();
+        if (selectedItemIndex != -1) {
+            selectedItem = GameManager.getInstance().items[selectedItemIndex];
+            updateItemView();
+        }
     }
     
     private int getItemIndex(int offset) {
+        // prevent infinite loop
+        bool noneUnlocked = true;
+        foreach (Item item in GameManager.getInstance().items) {
+            if (item.unlocked) {
+                noneUnlocked = false;
+            }
+        }
+        if (noneUnlocked) {
+            return -1;
+        }
+        
         int totalItems = GameManager.getInstance().items.Count;
         
         int index = selectedItemIndex + offset;
@@ -264,7 +277,11 @@ public class Player : MonoBehaviour
         return index;
     }
     
-    private void updateItemView() {
+    public void updateItemView() {
+        if (selectedItemIndex == -1) {
+            return;
+        }
+        
         Item previous = GameManager.getInstance().items[getItemIndex(-1)];
         Item next = GameManager.getInstance().items[getItemIndex(1)];
         

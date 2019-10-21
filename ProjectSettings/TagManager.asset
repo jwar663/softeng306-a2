@@ -9,6 +9,8 @@ TagManager:
   - Fireball
   - Fountain
   - Bullet
+  - BodyguardEnemy
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
