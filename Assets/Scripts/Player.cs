@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
 
     void updateAnimationAndMove()
     {
+        myRigidbody.velocity = new Vector2(0f, 0f);
         if (change != Vector3.zero && canMove && alive)
         {
             MoveCharacter();

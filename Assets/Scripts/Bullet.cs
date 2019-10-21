@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
         }
         hit = true;
         
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        BodyguardEnemy enemy = other.gameObject.GetComponent<BodyguardEnemy>();
         if (enemy != null && other.gameObject.tag == "BodyguardEnemy") {
             enemy.kill();
         }

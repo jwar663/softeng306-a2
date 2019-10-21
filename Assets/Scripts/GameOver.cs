@@ -13,7 +13,7 @@ public class GameOver : MonoBehaviour
     public void retry()
     {
        
-        SceneManager.LoadScene("ForestScene");
+        SceneManager.LoadScene(GameManager.getInstance().sceneName);
     }
 
     public void playClick() {
