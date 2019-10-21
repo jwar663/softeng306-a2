@@ -897,7 +897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Net
-  unlocked: 1
+  unlocked: 0
   sprite: {fileID: 21300024, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
   otherSprite: {fileID: 0}
   useOtherSprite: 0
@@ -1466,7 +1466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Water Gun
-  unlocked: 1
+  unlocked: 0
   sprite: {fileID: 21300004, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
   otherSprite: {fileID: 0}
   useOtherSprite: 0
@@ -1615,7 +1615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Water Bucket
-  unlocked: 1
+  unlocked: 0
   sprite: {fileID: 21300002, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
   otherSprite: {fileID: 21300014, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
   useOtherSprite: 0
@@ -1667,6 +1667,8 @@ MonoBehaviour:
   sceneName: 
   score: 0
   time: 0
+  levelsCompleted: 0
+  watchedCutscene: 0
   items:
   - {fileID: 1248717556}
   - {fileID: 1033169051}
@@ -1744,7 +1746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Gun
-  unlocked: 1
+  unlocked: 0
   sprite: {fileID: 21300018, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
   otherSprite: {fileID: 0}
   useOtherSprite: 0
@@ -2330,7 +2332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Hose
-  unlocked: 1
+  unlocked: 0
   sprite: {fileID: 21300022, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
   otherSprite: {fileID: 0}
   useOtherSprite: 0
@@ -2697,7 +2699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Shield
-  unlocked: 1
+  unlocked: 0
   sprite: {fileID: 21300006, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
   otherSprite: {fileID: 0}
   useOtherSprite: 0
