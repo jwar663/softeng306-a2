@@ -23,4 +23,10 @@ public class MainMenu : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("Confirm");
     }
+    
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.N)) {
+            GameManager.getInstance().cheatUnlockPortals = true;
+        }
+    }
 }

@@ -33,7 +33,7 @@ public class Fireball : MonoBehaviour
     }
     
     public void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "FireEnemy" || other.gameObject.tag == "Fireball" || isBase) {
+        if (other.gameObject.tag == "FireEnemy" || other.gameObject.tag == "Fireball" || other.gameObject.tag == "Bullet" || isBase) {
             return;
         }
         
@@ -44,7 +44,7 @@ public class Fireball : MonoBehaviour
         hit = true;
         
         Player player = other.gameObject.GetComponent<Player>();
-        if (player != null) {
+        if (player != null && !player.isShielded()) {
             player.reduceHP(10);
         }
         

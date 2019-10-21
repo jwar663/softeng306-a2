@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +12,8 @@ public class Player : MonoBehaviour
     private bool onFire;
     private bool alive;
     private bool canMove;
-    private ForestGameController controller;
+    private bool shielded;
+    private LevelController controller;
     
     private Rigidbody2D myRigidbody;
     // how much the player's position should change
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour
     private Item selectedItem;
     
     private float waterballCooldown;
+    private float bulletCooldown;
     
     enum Direction {
         UP,
@@ -42,12 +45,16 @@ public class Player : MonoBehaviour
         onFire = false;
         alive = true;
         canMove = true;
+        shielded = false;
         selectedItemIndex = 0;
         selectedItem = GameManager.getInstance().items[selectedItemIndex];
         
-        controller = FindObjectOfType<ForestGameController>();
+        // find controller
+        IEnumerator enumerator = FindObjectsOfType<MonoBehaviour>().OfType<LevelController>().GetEnumerator();
+        enumerator.MoveNext();
+        controller = enumerator.Current as LevelController;
         
-        if (controller) {
+        if (controller != null) {
             updateItemView();
         }
     }
@@ -72,6 +79,7 @@ public class Player : MonoBehaviour
 
     void updateAnimationAndMove()
     {
+        myRigidbody.velocity = new Vector2(0f, 0f);
         if (change != Vector3.zero && canMove && alive)
         {
             MoveCharacter();
@@ -103,13 +111,13 @@ public class Player : MonoBehaviour
     void updateKeyboard() {
         // update the direction the player is facing
         // this doesn't actually change how they're rendered, but we need this information later
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
             facingDirection = Direction.UP;
-        } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+        } else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
             facingDirection = Direction.DOWN;
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+        } else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.D)) {
             facingDirection = Direction.LEFT;
-        } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+        } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A)) {
             facingDirection = Direction.RIGHT;
         }
         
@@ -142,9 +150,9 @@ public class Player : MonoBehaviour
             
             bool interactedWithNPC = false;
             
-            if (controller) {
+            if (controller != null) {
                 // if the player is facing an npc, interact with it
-                foreach (NPC npc in controller.npcs) {
+                foreach (NPC npc in controller.getNPCs()) {
                     if (npc == null) {
                         continue;
                     }
@@ -155,54 +163,65 @@ public class Player : MonoBehaviour
                             if (canMove) {
                                 interactedWithNPC = true;
                                 npc.talkTo();
+                                break;
                             }
                         }
                     }
                 }
                 
-                if (!interactedWithNPC) {
-                    switch (selectedItem.name) {
-                    case "Water Bucket":
-                        if (selectedItem.useOtherSprite) { // bucket is empty
-                            GameObject fountain = GameObject.FindWithTag("Fountain");
-                            float distance = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(fountain.transform.position.x - transform.position.x), 2.0f) + Mathf.Pow(Mathf.Abs(fountain.transform.position.y - transform.position.y), 2.0f));
-                            if (distance <= 2.0f) {
-                                selectedItem.useOtherSprite = false;
-                                updateItemView();
+                ForestGameController forest = controller as ForestGameController;
+                if (forest) {
+                    if (!interactedWithNPC) {
+                        if (selectedItem.name == "Water Bucket") {
+                            if (selectedItem.useOtherSprite) { // bucket is empty
+                                GameObject fountain = GameObject.FindWithTag("Fountain");
+                                float distance = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(fountain.transform.position.x - transform.position.x), 2.0f) + Mathf.Pow(Mathf.Abs(fountain.transform.position.y - transform.position.y), 2.0f));
+                                if (distance <= 2.0f) {
+                                    selectedItem.useOtherSprite = false;
+                                    updateItemView();
+                                }
                             }
-                            break;
                         }
+                        
                         // if the player is facing a firetree that is on fire, extinguish it
-                        foreach (FireTree fireTree in controller.fireTrees) {
+                        foreach (FireTree fireTree in forest.fireTrees) {
                             Vector2 fireTreePosition = new Vector2(fireTree.gameObject.transform.position.x, fireTree.gameObject.transform.position.y);
                             if (fireTreePosition.x - delta < targetPosition.x && fireTreePosition.x + delta > targetPosition.x) {
                                 if (fireTreePosition.y - delta < targetPosition.y && fireTreePosition.y + delta > targetPosition.y) {
                                     if (fireTree.isOnFire()) {
-                                        animator.SetBool("acting", true);
-                                        fireTree.putOut();
-                                        controller.fireTreesExtinguished++;
-                                        FindObjectOfType<AudioManager>().Play("PutOut");
-                                        Invoke("resetActingAnimationState", 0.5f);
-                                        controller.score += 500;
-                                        selectedItem.useOtherSprite = true;
-                                        updateItemView();
+                                        if (selectedItem.name == "Water Bucket" ){
+                                            if (selectedItem.useOtherSprite) {
+                                                FindObjectOfType<ToastMessage>().show("Your bucket is empty!");
+                                            } else {
+                                                animator.SetBool("acting", true);
+                                                fireTree.putOut();
+                                                forest.fireTreesExtinguished++;
+                                                FindObjectOfType<AudioManager>().Play("PutOut");
+                                                Invoke("resetActingAnimationState", 0.5f);
+                                                forest.score -= 1;
+                                                selectedItem.useOtherSprite = true;
+                                                updateItemView();
+                                            }
+                                        } else {
+                                            FindObjectOfType<ToastMessage>().show("That won't put out the fire.");
+                                        }
                                     }
                                 }
                             }
                         }
-                        break;
-                    default:
-                        break;
                     }
                 }
             }
         }
         
-        if (controller) {
+        if (controller != null && selectedItem != null) {
             if (Input.GetKey(KeyCode.X)) {
                 switch (selectedItem.name) {
                 case "Water Gun":
                     shootWaterball();
+                    break;
+                case "Gun":
+                    shootBullet();
                     break;
                 default:
                     break;
@@ -210,23 +229,43 @@ public class Player : MonoBehaviour
             }
         }
         
-        if (controller) {
+        if (controller != null && selectedItem != null) {
             if (Input.GetKeyDown(KeyCode.Q)) {
                 changeItem(-1);
             } else if (Input.GetKeyDown(KeyCode.E)) {
                 changeItem(1);
             }
         }
+        
+        shielded = controller != null && selectedItem != null && selectedItem.name == "Shield" && (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Space));
+        animator.SetBool("shielded", shielded);
+    }
+    
+    public bool isShielded() {
+        return shielded;
     }
     
     private void changeItem(int offset) {
         selectedItemIndex = getItemIndex(offset);
-        selectedItem = GameManager.getInstance().items[selectedItemIndex];
         
-        updateItemView();
+        if (selectedItemIndex != -1) {
+            selectedItem = GameManager.getInstance().items[selectedItemIndex];
+            updateItemView();
+        }
     }
     
     private int getItemIndex(int offset) {
+        // prevent infinite loop
+        bool noneUnlocked = true;
+        foreach (Item item in GameManager.getInstance().items) {
+            if (item.unlocked) {
+                noneUnlocked = false;
+            }
+        }
+        if (noneUnlocked) {
+            return -1;
+        }
+        
         int totalItems = GameManager.getInstance().items.Count;
         
         int index = selectedItemIndex + offset;
@@ -239,11 +278,21 @@ public class Player : MonoBehaviour
         return index;
     }
     
-    private void updateItemView() {
+    public void updateItemView() {
+        if (selectedItemIndex == -1) {
+            return;
+        }
+        
         Item previous = GameManager.getInstance().items[getItemIndex(-1)];
         Item next = GameManager.getInstance().items[getItemIndex(1)];
         
-        FindObjectOfType<ItemManager>().setItems(previous, selectedItem, next);
+        if (FindObjectOfType<ItemManager>() != null) {
+            FindObjectOfType<ItemManager>().setItems(previous, selectedItem, next);
+        }
+    }
+    
+    public Item getSelectedItem() {
+        return selectedItem;
     }
     
     public void reduceHP(int x) {
@@ -311,5 +360,43 @@ public class Player : MonoBehaviour
         Waterball waterballScript = waterball.GetComponent<Waterball>();
         waterballScript.isBase = false;
         waterballScript.move(force);
+    }
+    
+    public void shootBullet() {
+        if (Time.time - bulletCooldown < GameManager.getInstance().bulletCooldown) {
+            return;
+        }
+        bulletCooldown = Time.time;
+        
+        Vector2 force;
+        float projectileSpeed = GameManager.getInstance().bulletSpeed;
+
+        switch (facingDirection) {
+        case Direction.UP:
+            force = new Vector2(0f, projectileSpeed);
+            break;
+        case Direction.DOWN:
+            force = new Vector2(0f, -projectileSpeed);
+            break;
+        case Direction.LEFT:
+            force = new Vector2(-projectileSpeed, 0f);
+            break;
+        case Direction.RIGHT:
+            force = new Vector2(projectileSpeed, 0f);
+            break;
+        default:
+            force = new Vector2(0f, projectileSpeed);
+            break;
+        }
+        float angleDegrees = Mathf.Atan2(force.y, force.x) * Mathf.Rad2Deg;
+        
+        Vector3 projectilePosition = transform.position;
+        Quaternion projectileRotation = Quaternion.AngleAxis(angleDegrees, Vector3.forward);
+        
+        GameObject bullet = GameObject.Instantiate(GameManager.getInstance().baseBullet, projectilePosition, projectileRotation) as GameObject;
+        
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        bulletScript.isBase = false;
+        bulletScript.move(force);
     }
 }

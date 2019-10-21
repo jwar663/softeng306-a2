@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ForestGameController : NPCBehaviour
+public class ForestGameController : NPCBehaviour, LevelController
 {
     public NPC npc;
     private bool notRun = true;
@@ -13,12 +13,12 @@ public class ForestGameController : NPCBehaviour
     public Transform smallFire;
     public Camera camera;
     private bool isCompleted = true;
-    public int score = 0;
+    private bool allCutsceneDone = false;
+    public int score;
     public Text scoreText;
-    
     private Player player;
-    public List<FireTree> fireTrees;
     public List<NPC> npcs;
+    public List<FireTree> fireTrees;
     
     // total number of fire trees
     public int totalFireTrees;
@@ -30,10 +30,21 @@ public class ForestGameController : NPCBehaviour
     public override void dialogueCompleted()
     {
         isCompleted = true;
+        
+        if (allCutsceneDone) {
+            GameManager.getInstance().items[1].unlocked = true;
+            FindObjectOfType<ToastMessage>().show("Received item: Water Gun");
+            
+            FindObjectOfType<Player>().updateItemView();
+        }
     }
 
     public override void interact(NPC npc)
     {
+    }
+    
+    public List<NPC> getNPCs() {
+        return npcs;
     }
 
     // Start is called before the first frame update
@@ -47,19 +58,20 @@ public class ForestGameController : NPCBehaviour
         player = FindObjectOfType<Player>();
         fireTrees = new List<FireTree>(FindObjectsOfType<FireTree>());
         npcs = new List<NPC>(FindObjectsOfType<NPC>());
-        
+        this.score = 9;
         StartCoroutine("Run");
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = score.ToString();
-        GameManager.getInstance().score = score;
+        scoreText.text = "Fires Remaining: " + score.ToString();
+        GameManager.getInstance().score = 9-score;
         GameManager.getInstance().time = Time.timeSinceLevelLoad;
         
         if (Input.GetKeyDown(KeyCode.M)) {
             StopCoroutine("Run");
+            allCutsceneDone = true;
             FindObjectOfType<DialogueManager>().EndDialogue();
             camera.GetComponent<CameraMovement>().enabled = true;
         }
@@ -81,6 +93,10 @@ public class ForestGameController : NPCBehaviour
         dialogue.Add("Rainforests play a huge role in regulating the worlds CO2 levels.");
         dialogue.Add("Each year we humans set them on fire to make way for agriculatural land.");
         dialogue.Add("If you don't put a stop to this, we wont have any rainforests left.");
+        dialogue.Add("The lives and homes of millions of animals will all perish.");
+        dialogue.Add("Unfortunately, even after the fire, the effects will be felt all over the world.");
+        dialogue.Add("Mass amounts of CO2 will be released into the atmosphere, and there will be no forest left to regulate these CO2 levels.");
+
         FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
@@ -130,6 +146,7 @@ public class ForestGameController : NPCBehaviour
         dialogue = new List<string>();
         dialogue.Add("You must put out the burning trees to weaken the fire monster.");
         dialogue.Add("If you put out enough fires, he will be too weak to continue burning and go out.");
+        dialogue.Add("You can interact with the environment by pressing either X and SPACE when you're next to the object.");
         FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
@@ -146,6 +163,7 @@ public class ForestGameController : NPCBehaviour
         }
         dialogue = new List<string>();
         dialogue.Add("Try and avoid these smaller fire monsters, they will hurt you.");
+        dialogue.Add("Move around by pressing WASD or the arrow keys!");
         FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
         isCompleted = false;
         yield return null;
@@ -155,5 +173,10 @@ public class ForestGameController : NPCBehaviour
         }
 
         camera.GetComponent<CameraMovement>().enabled = true;
+        allCutsceneDone = true;
+        dialogue = new List<string>();
+        dialogue.Add("Please hurry, the future of our Rainforests depend on you.");
+        dialogue.Add("Oh, and you'll need this.");
+        FindObjectOfType<DialogueTrigger>().TriggerDialogue(npc, dialogue, false);
     }
 }

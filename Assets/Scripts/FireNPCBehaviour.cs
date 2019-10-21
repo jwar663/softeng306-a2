@@ -35,7 +35,7 @@ public class FireNPCBehaviour : NPCBehaviour
     public override void dialogueCompleted() {
         ForestGameController controller = FindObjectOfType<ForestGameController>();
         if (controller.fireTreesExtinguished >= controller.fireTreesTarget) {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

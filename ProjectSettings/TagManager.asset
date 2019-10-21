@@ -8,6 +8,9 @@ TagManager:
   - FireEnemy
   - Fireball
   - Fountain
+  - Bullet
+  - BodyguardEnemy
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -50,4 +53,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 161350129
+    locked: 0
+  - name: ObjectsHighup
+    uniqueID: 108635079
     locked: 0

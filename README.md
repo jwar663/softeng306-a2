@@ -15,6 +15,7 @@ Serious game project themed around climate change.
 | Previous item | Q |
 | Next item | E |
 | Skip cutscene | M |
+| Unlock all levels | N (from the main menu only) |
 
 ---
 
@@ -36,18 +37,6 @@ Serious game project themed around climate change.
 Open the project using Unity 2018.4.10f1. Create a folder "Build" in the project directory. File > Build and Run the project, and select the Build directory. The executable will be located at Build/Rpg2DTopDown.exe.
 
 A build has been provided with the [Prototype](https://github.com/veratrum/softeng306-a2/releases/tag/v0.1-prototype) release.
-
----
-
-### TODO:
-
-* Implement other menus and functionality e.g. settings, savefiles
-* Implement more levels that are more complex
-* ~Implement level select scene~
-* ~Implement simple HUD (health bar)~
-* ~Implement dialogue UI used for interacting with NPCs~
-* ~Implement start menu and game over/victory menus~
-* ~Improve story of first prototype level, in particular making the mechanics and objectives of the game obvious to the player, and adding some kind of loss condition~
 
 ---
 
