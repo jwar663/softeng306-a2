@@ -46224,7 +46224,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 1
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -47419,10 +47419,10 @@ RectTransform:
   m_Father: {fileID: 1563698259}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 325.09998, y: -171}
-  m_SizeDelta: {x: 135, y: 60.1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 299, y: 9}
+  m_SizeDelta: {x: -679, y: -297.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939020499
 MonoBehaviour:
