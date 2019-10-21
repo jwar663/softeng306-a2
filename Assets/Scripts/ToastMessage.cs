@@ -21,6 +21,8 @@ public class ToastMessage : MonoBehaviour
     }
     
     public void show(string s) {
+        //collect item sound
+        FindObjectOfType<AudioManager>().Play("CollectItem");
         text.text = s;
         text.canvasRenderer.SetAlpha(1f);
         StartCoroutine("hide");
