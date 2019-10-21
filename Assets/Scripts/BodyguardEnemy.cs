@@ -14,6 +14,8 @@ public class BodyguardEnemy: MonoBehaviour
     private Rigidbody2D rigidBody;
     private Animator animator;
     
+    private int hp = 3;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +76,10 @@ public class BodyguardEnemy: MonoBehaviour
     }
     
     public void kill() {
-        Destroy(gameObject);
+        hp -= 1;
+        
+        if (hp == 0) {
+            Destroy(gameObject);
+        }
     }
 }
