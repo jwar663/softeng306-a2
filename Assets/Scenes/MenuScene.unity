@@ -1615,7 +1615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Water Bucket
-  unlocked: 0
+  unlocked: 1
   sprite: {fileID: 21300002, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
   otherSprite: {fileID: 21300014, guid: a137f71641cf0bc4f9b58fd2557079be, type: 3}
   useOtherSprite: 0
