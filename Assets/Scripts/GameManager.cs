@@ -36,11 +36,15 @@ public class GameManager : MonoBehaviour
     public GameObject baseBullet;
     public float bulletSpeed;
     public float bulletCooldown;
+    
+    public GameObject baseEnemyBullet;
+    public float enemyBulletSpeed;
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(baseWaterball);
         DontDestroyOnLoad(baseBullet);
+        DontDestroyOnLoad(baseEnemyBullet);
         instance = this;
     }
 }

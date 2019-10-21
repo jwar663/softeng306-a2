@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public bool isBase;
     private Rigidbody2D rigidBody;
@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
     }
     
     public void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Bullet" || other.gameObject.tag == "Waterball" || other.gameObject.tag == "Fireball" || other.gameObject.tag == "FireEnemy" || other.gameObject.tag == "EnemyBullet" || isBase) {
+        if (other.gameObject.tag == "BodyguardEnemy" || other.gameObject.tag == "Bullet" || other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Waterball" || isBase) {
             return;
         }
         
@@ -43,9 +43,9 @@ public class Bullet : MonoBehaviour
         }
         hit = true;
         
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        if (enemy != null && other.gameObject.tag == "BodyguardEnemy") {
-            enemy.kill();
+        Player player = other.gameObject.GetComponent<Player>();
+        if (player != null && !player.isShielded()) {
+            player.reduceHP(20);
         }
         
         Destroy(gameObject);
